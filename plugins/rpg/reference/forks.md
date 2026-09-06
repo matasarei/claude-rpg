@@ -36,6 +36,12 @@ Never fork:
 
 **Three at once at most.** Wait for them before forking more.
 
+**Same tree, disjoint files.** Hands edit in the one working tree, each inside its own file
+list; that is what keeps a split cheap. Parts that cannot be made disjoint — two hands that
+must touch the same file — are not a split; the Daemon casts them in order. A fork declared with
+`isolation: worktree` would let hands overlap at the cost of a merge afterwards; the plugin
+does not turn it on, and a Summoner who wants it for a repository says so in the chat.
+
 ## The forking
 
 Every fork is given, in its prompt:

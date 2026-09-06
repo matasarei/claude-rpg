@@ -2,9 +2,10 @@
 
 A Claude Code plugin marketplace with one plugin, `rpg` (`plugins/rpg/`): six skills, three
 subagents, one hook script and a `reference/` folder of procedures, all markdown except
-`scripts/guard.sh` and `scripts/voice.sh`. There is no build, no language runtime and no test
-framework; the checks are the `claude` CLI's validator, the guard script fed known inputs, and
-smoke runs of the skills in a throwaway repository.
+five shell scripts under `scripts/`. There is no build, no language runtime and no test
+framework; the checks are the `claude` CLI's validator, the guard script fed known inputs, the
+eval suite under `plugins/rpg/evals/` (early access on some accounts), and smoke runs of the
+skills in a throwaway repository.
 
 ## Commands
 
@@ -44,6 +45,15 @@ it; the reason is in the newest file under `~/.claude/debug/` (grep `permission 
 - **Skills that write** (`summon`, `quest`, `questline`, `sidequest`) carry
   `disable-model-invocation: true`; skills that only read (`journal`, `evocation`) carry
   `disallowed-tools: Edit, Write, NotebookEdit` and a `when_to_use` line.
+- **The scripts do the reading.** `scripts/survey.sh` (the whole land in one pass, injected into
+  `/rpg:summon`), `scripts/quests.sh` (the Road: one line per quest with state, last Log line and
+  last ruling, injected into every skill that needs it; skips `lore.md`), `scripts/slug.sh` (the
+  quest slug from a goal, deterministic), `scripts/voice.sh` (prints the voice for injection).
+  Facts come from them as data; the Daemon opens a file only for what they did not settle. A new
+  fact every skill needs goes into a script, not into prose.
+- **Evals** (`plugins/rpg/evals/`): four cases with self-built fixtures for `claude plugin eval
+  plugins/rpg --scaffold`. Each scaffold must build and its test pass (`bash scaffold.sh` in a
+  temp dir); `case.yaml` must parse (Ruby's YAML is on this machine, PyYAML is not).
 - **The guard** (`scripts/guard.sh`) is a `PreToolUse` hook declared in the frontmatter of the
   writing skills. It refuses `--force`, `--force-with-lease`, `--no-verify`, `--amend` and any
   push to `main`/`master`/the profile's base branch, exit 2 with the reason on stderr.
