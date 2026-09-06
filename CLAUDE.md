@@ -12,7 +12,7 @@ skills in a throwaway repository.
 | What | Command |
 |---|---|
 | Install | none — load it with `claude --plugin-dir /Users/hc/Projects/claude-rpg/plugins/rpg`, or `/plugin marketplace add /Users/hc/Projects/claude-rpg` + `/plugin install rpg@claude-rpg` |
-| Test | `claude plugin validate plugins/rpg && claude plugin validate plugins/rpg/skills && claude plugin validate plugins/rpg/agents`, then `bash evals/guard/cases.sh` (the guard's behaviour cases, with and without `jq`) |
+| Test | `claude plugin validate plugins/rpg && claude plugin validate plugins/rpg/skills && claude plugin validate plugins/rpg/agents`, then `bash evals/run-all.sh` (the guard's behaviour cases with and without `jq`, and the skills' invariants) and `shellcheck --severity=warning plugins/rpg/scripts/*.sh plugins/rpg/evals/*/scaffold.sh evals/*.sh evals/*/*.sh`; CI runs the same on every push and pull request (`.github/workflows/checks.yml`) |
 | Lint | `claude plugin validate .` (the `version` warning is intended) |
 | Build | none — nothing is generated |
 | Run | `claude --plugin-dir /Users/hc/Projects/claude-rpg/plugins/rpg`, then `/rpg:summon` in any repository; `/reload-plugins` picks up edits |

@@ -1,0 +1,52 @@
+name: checks
+
+# The plugin is markdown and shell, so the checks are: do the rules the skills
+# state still hold, does the shell parse cleanly, and does the plugin still load.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  evals:
+    name: eval suites
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash evals/run-all.sh
+
+  shellcheck:
+    name: shellcheck
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      # ubuntu-latest ships shellcheck, so there is nothing to install.
+      # severity=warning: the info notices on these files are deliberate, and a
+      # newer shellcheck than the runner's would otherwise fail a build by
+      # adding notices nobody changed anything to earn.
+      - run: shellcheck --severity=warning plugins/rpg/scripts/*.sh plugins/rpg/evals/*/scaffold.sh evals/*.sh evals/*/*.sh
+
+  plugin:
+    name: plugin validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      # Deliberately unpinned: the job asks whether the plugin still loads in the
+      # CLI people actually run, and a pinned version quietly stops asking.
+      - run: npm install -g @anthropic-ai/claude-code
+      # No credentials: validate reads the manifests and the skills off disk.
+      # The version warning is intended and does not fail the run.
+      - run: |
+          claude plugin validate .
+          claude plugin validate plugins/rpg
+          claude plugin validate plugins/rpg/skills
+          claude plugin validate plugins/rpg/agents

@@ -7,7 +7,7 @@
 <p align="center">A Claude Code plugin that runs development as an RPG: quests from scrying to a merged pull request, questlines, sidequests, subagent forks, a guard hook, and a pact that keeps the game out of your code.</p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Claude_Code-D97757?style=for-the-badge&logo=claude&logoColor=white" alt="Claude Code" /> <img src="https://img.shields.io/badge/License-MIT-3DA639?style=for-the-badge" alt="License: MIT" />
+  <img src="https://img.shields.io/badge/Claude_Code-D97757?style=for-the-badge&logo=claude&logoColor=white" alt="Claude Code" /> <img src="https://img.shields.io/badge/License-MIT-3DA639?style=for-the-badge" alt="License: MIT" /> <a href="https://github.com/matasarei/claude-rpg/actions/workflows/checks.yml"><img src="https://img.shields.io/github/actions/workflow/status/matasarei/claude-rpg/checks.yml?style=for-the-badge&label=checks" alt="checks" /></a>
 </p>
 
 Skills for [Claude Code](https://claude.com/claude-code) that turn a day of development into a
@@ -284,7 +284,8 @@ Then `/rpg:summon` in any repository. `/reload-plugins` picks up edits. Before a
 ```bash
 claude plugin validate .                 # the marketplace
 claude plugin validate plugins/rpg       # the plugin (the version warning is intended)
-bash evals/guard/cases.sh                # the guard's behaviour cases, with and without jq
+bash evals/run-all.sh                    # the guard's behaviour cases and the skills' invariants
+shellcheck --severity=warning plugins/rpg/scripts/*.sh plugins/rpg/evals/*/scaffold.sh evals/*.sh evals/*/*.sh
 ```
 
 Layout:
@@ -301,9 +302,14 @@ plugins/rpg/
   scripts/quests.sh          the Road: one line per quest file, injected into every skill that needs it
   scripts/slug.sh            the quest slug from a goal, deterministic
   scripts/voice.sh           prints the voice for injection
+evals/
+  run-all.sh                 every shell suite below, one command; CI runs exactly this
+  guard/cases.sh             the guard's behaviour cases, with and without jq
+  skills/invariants.sh       the frontmatter, injection and self-containment rules, asserted
+.github/workflows/checks.yml the suites, shellcheck and claude plugin validate on every push and pull request
 ```
 
-Evals live in `plugins/rpg/evals/`, one case per skill that runs without a remote, each
+Model-driven evals live in `plugins/rpg/evals/`, one case per skill that runs without a remote, each
 building its own throwaway fixture: `claude plugin eval plugins/rpg --scaffold` (early access;
 see `plugins/rpg/evals/README.md`).
 
