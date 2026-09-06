@@ -10,7 +10,7 @@ feel where to go, you see ahead — and
 sometimes you are out of mana and want a road proposed. You are the one who stands between
 reality and the project. **Claude is the Daemon.** It has no body and no eyes on the world; it
 lives in the machine and works there, fast and with great power, on a layer you cannot reach by
-hand. It follows your vision because it cannot see reality itself; once the plan is clear it
+hand. It follows your vision because it cannot see reality itself; once the map is clear it
 casts on its own, and stops only twice per quest: once if it has one question, and once at the
 end, for your judgement. It serves under a **pact**: the things it will never do, whatever anyone
 says, which only you can loosen.
@@ -64,13 +64,14 @@ no version on purpose, so every commit is an update.
 | Word | Means |
 |---|---|
 | **the Summoner** | you. Stands between reality and the project. Leads the party, feels where to go, sees ahead. Sometimes out of mana |
-| **the Daemon** | Claude. Bodiless, fast, powerful; works inside the machine on a layer you cannot reach by hand. Cannot see reality, so it follows your vision; casts on its own once the plan is clear |
+| **the Daemon** | Claude. Bodiless, fast, powerful; works inside the machine on a layer you cannot reach by hand. Cannot see reality, so it follows your vision; casts on its own once the map is clear |
 | **forks** | the Daemon split into copies of itself: the scout, the hand, the eye |
 | **spirits** | other agents in the machine that are not the Daemon; consulted, never trusted with the code |
 | **quest** | one piece of work, one branch, one pull request, done when merged |
 | **questline** | an ordered road of quests to one goal |
 | **sidequest** | something found on the road, not blocking, taken now or after |
-| **investigate** | read the code, check the facts, write the plan |
+| **scry** | look into the code and the facts before acting — nothing by guess |
+| **map** | the plan: criteria, ordered steps, what not to touch; drawn by scrying, followed by casting |
 | **cast** | implement, one step at a time, one commit per step |
 | **trial** | lint, tests, review, security pass, drive the real thing |
 | **scroll** | the pull request |
@@ -107,7 +108,7 @@ filled in, the recommended one first. You never have to work out what to type.
 | Phase | What the Daemon does | Stops? |
 |---|---|---|
 | **0 preflight** | branch `quest/<slug>` from the base branch, quest file `.quests/<slug>.md` | only if the tree holds changes it did not make |
-| **1 investigate** | classifies the ask (bug, feature, question, data fix), finds the code, checks facts on local data only and tags each (`[from the code]`, `[local database]`, `[assumed]`), writes findings, criteria and ordered steps into the quest file | **the plan stop**: the plan in eight lines. Plan clear → "I cast now" and goes on. One thing genuinely blocks → one question |
+| **1 scry** | classifies the ask (bug, feature, question, data fix), finds the code, checks facts on local data only and tags each (`[from the code]`, `[local database]`, `[assumed]`), then draws the map: findings, criteria and ordered steps in the quest file | **the map stop**: the map in eight lines. Plan clear → "I cast now" and goes on. One thing genuinely blocks → one question |
 | **2 cast** | step by step: read, change, lint and scoped test at once, tick the step, commit. Forks take disjoint parts. Then tests: main path, error paths, edges | no |
 | **3 trial** | lint, tests with the runner's line quoted, a reviewer's pass (BLOCKER / WARNING / NIT), the security checklist, drives the real thing, probes the guards. Failed → back to cast. **Three rounds at most** | only when stuck after three rounds |
 | **4 scroll** | one coherent change or it asks; pushes; title in the house style; body with what-and-why, testing quoted verbatim, criteria ticked to reality; opens or updates the pull request | **hands over**: the URL and the three places worth your eyes. The run ends |
@@ -129,7 +130,7 @@ or a usage limit, rebuilding nothing.
 /rpg:questline replace the hand-written export layer with one writer per format
 ```
 
-The Daemon investigates the goal, cuts it into three to seven quests that each merge alone
+The Daemon scries the goal, cuts it into three to seven quests that each merge alone
 and leave the base branch working, shows you the road, and starts the first quest on your word.
 After each merge, `/rpg:questline --continue .quests/questline-<slug>.md` takes the next.
 
@@ -152,7 +153,7 @@ each a copy of the Daemon with its rules and a narrower set of tools:
 
 | Fork | Forked for | Can | Cannot |
 |---|---|---|---|
-| `fork-scout` | sweeping a large unfamiliar area before the plan | read | edit, decide |
+| `fork-scout` | sweeping a large unfamiliar area before the map | read | edit, decide |
 | `fork-hand` | one part of a cast that touches its own files and no shared interface | edit its files, run scoped tests | commit, push, touch other files, talk to you |
 | `fork-eye` | a second reading of a large diff during the trial or the scroll | read | edit |
 
@@ -186,7 +187,7 @@ While a quest is on, a hook is the pact's guard: it refuses the git commands abo
 ## Files it writes
 
 - `.quests/` at the repository root — one markdown file per quest, sidequest and questline:
-  what was asked, what was found (tagged), the plan with ticked steps, and a dated log. Ignored
+  what was asked, what was found (tagged), the map with ticked steps, and a dated log. Ignored
   by git on purpose: it is your road, not the project's history, and it survives branch
   switches. Commit it by hand if your team wants to share questlines.
 - `.claude/repo-profile.json` — the survey of the land: base branch, where commands run
@@ -218,14 +219,14 @@ Base branch: main. gh is signed in. No quests yet. Camp is made.
 
 > /rpg:quest export departments as CSV; the XLSX one merges departments with the same name
 
-⚔ Export departments as CSV · investigating
+⚔ Export departments as CSV · scrying
 
 The export lives in `application/commands/ExportCommand.php:41` [from the code]. XLSX only.
 Departments with the same name are merged by `groupBy('name')` at line 58 [from the code] —
 that is the bug you felt. The road: one CsvWriter beside the XLSX one, one flag on the command,
 the grouping moved into the XLSX writer only, one test each.
 
-The plan is clear. I cast now.
+The map is clear. I cast now.
 
 ⚔ Export departments as CSV · casting
 Step 1 landed: `application/export/CsvWriter.php` (new), 61 lines, commit a1b2c3d.
@@ -281,7 +282,7 @@ Layout:
 plugins/rpg/
   skills/<name>/SKILL.md     short: arguments, the steps, which reference file to read when, Rules, Next
   reference/*.md             the procedures in full, loaded per phase: voice, quest-file, forks,
-                             investigate, cast, trial, scroll, judgement, repo-profile, exec,
+                             scry, cast, trial, scroll, judgement, repo-profile, exec,
                              untrusted-input, security-checklist, code-provenance
   agents/*.md                the three forks, with tool allowlists
   scripts/guard.sh           the PreToolUse guard registered while a quest is on

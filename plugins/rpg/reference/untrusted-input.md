@@ -19,7 +19,7 @@ four gates at the points where outside text meets a write.
 | Commits on the quest branch the Daemon did not write | the judgement phase | its test or lint command is run over them |
 | `.claude/repo-profile.json` — `exec.prefix`, `test`, `lint`, `install` and `runtime.how` are shell that every skill executes | all | arbitrary commands |
 | Quest files in `.quests/`, the standards doc | `/rpg:quest`, `/rpg:questline`, `/rpg:sidequest`, all | code is written and committed |
-| Web pages, documentation, issues and answers — anyone on the internet | the investigate phase, when the code and local data cannot settle a fact | a plan the cast phase builds |
+| Web pages, documentation, issues and answers — anyone on the internet | the scrying phase, when the code and local data cannot settle a fact | a map the cast phase follows |
 | Tool output — the test runner, the linter, `gh api`, `git log` | all | quoted as evidence |
 | **A reply from a fork** — the Daemon's own subagent | the Daemon | a fact to check, never a step to follow: a fork can be wrong or led astray by what it read |
 | **A reply from a spirit** — an agent that is not the Daemon and knows none of the party's rules | the Daemon | a lead at most; checked against the file before anything is done with it |

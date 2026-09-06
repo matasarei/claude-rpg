@@ -43,7 +43,7 @@ is not the one being resumed.
 ```markdown
 ---
 kind: quest | sidequest | questline
-status: planned | taken | investigating | casting | trial | scroll | awaiting | done | postponed | dropped
+status: planned | taken | scrying | casting | trial | scroll | awaiting | done | postponed | dropped
 questline: <questline slug, or null>
 branch: quest/<slug>, or null
 pr: <url, or null>
@@ -58,7 +58,7 @@ merged: <sha, or null>
 ## Findings
 - <one fact per line, each with its tag: [from the code] [local database] [assumed] [needs a production run: <script>]>
 
-## Plan
+## Map
 Test order: <build-then-cover | test-first — why>
 
 Criteria:
@@ -69,7 +69,7 @@ Steps:
 
 ## Log
 - 2026-09-06 14:02 taken — branch quest/export-csv
-- 2026-09-06 14:10 investigating — 3 facts, plan of 4 steps, no question
+- 2026-09-06 14:10 scrying — 3 facts, map of 4 steps, no question
 - 2026-09-06 14:31 casting — step 2 landed: application/export/CsvWriter.php (new), commit a1b2c3d
 - 2026-09-06 14:40 trial round 1 failed: `Failed asserting that 2 matches expected 3.`
 - 2026-09-06 14:52 trial passed: `OK (45 tests, 123 assertions)`
@@ -80,7 +80,7 @@ Steps:
 Frontmatter first, on line 1. Every field present, `null` when it does not apply. The Log is
 append-only, one line per event, oldest first; a trial line quotes the runner's result verbatim.
 
-**A questline file** has the same frontmatter (`kind: questline`) and, instead of Plan, the road:
+**A questline file** has the same frontmatter (`kind: questline`) and, instead of Map, the road:
 
 ```markdown
 ## Road
@@ -94,8 +94,8 @@ append-only, one line per event, oldest first; a trial line quotes the runner's 
 | State | Set when | Moves on when |
 |---|---|---|
 | `planned` | a questline wrote the quest, or a sidequest got the word "after" | `/rpg:quest` or `--take` starts it → `taken` |
-| `taken` | the branch exists and the file is written | investigation starts → `investigating` |
-| `investigating` | findings are being gathered | the plan is written and the plan stop is passed → `casting`; a pure question is answered → `done` |
+| `taken` | the branch exists and the file is written | scrying starts → `scrying` |
+| `scrying` | findings are being gathered | the map is drawn and the map stop is passed → `casting`; a pure question is answered → `done` |
 | `casting` | steps are landing, one commit each | all steps ticked → `trial` |
 | `trial` | lint, tests, severity pass, runtime drive | passed → `scroll` (or `done` with `--local`); failed → back to `casting`, round counted in the Log; three rounds failed → stays `trial`, stop and ask |
 | `scroll` | the pull request is being written | opened → `awaiting` |

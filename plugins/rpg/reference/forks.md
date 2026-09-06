@@ -9,7 +9,7 @@ Forks exist because one process is sometimes too few — not because more is alw
 
 | Fork | Forked for | Can | Cannot | Reports |
 |---|---|---|---|---|
-| `fork-scout` | the investigate phase, when a large unfamiliar area must be swept before the plan can be written | Read, Grep, Glob, Bash (read-only use) | edit, commit, decide | the files and lines that matter, one line each, each tagged `[from the code]`; open questions it could not settle |
+| `fork-scout` | the scrying phase, when a large unfamiliar area must be swept before the map can be drawn | Read, Grep, Glob, Bash (read-only use) | edit, commit, decide | the files and lines that matter, one line each, each tagged `[from the code]`; open questions it could not settle |
 | `fork-hand` | the cast phase, when two or more steps touch disjoint files and change no shared interface | edit the files on its list, run the scoped test and lint | commit, push, touch a file off its list, change a signature another part depends on, talk to the Summoner | the diff it made (`git diff -- <its files>`), the scoped test line verbatim, anything it noticed but left alone |
 | `fork-eye` | the trial, when the diff is large, or the scroll, as a second reader while the Daemon writes the description | Read, Grep, Glob, Bash (read-only use) | edit, commit | findings in the trial's shape: `path:line`, severity, one sentence on the problem, one on the fix, the line of evidence |
 
@@ -17,9 +17,9 @@ Forks exist because one process is sometimes too few — not because more is alw
 
 Fork when one of these is true, and say so in one line before doing it:
 
-- **Sweep**: the investigation needs more than five files read in full to find where the change
+- **Sweep**: the scrying needs more than five files read in full to find where the change
   goes, and the area is unfamiliar. One scout.
-- **Split cast**: the plan has parts that touch disjoint files and share no interface being
+- **Split cast**: the map has parts that touch disjoint files and share no interface being
   changed — two writers, a command and its documentation, three call sites of a renamed thing.
   One hand per part, three at most.
 - **Second reader**: the diff is over about 300 changed lines, or touches money, grades, records
@@ -30,7 +30,7 @@ Never fork:
 - for a one-file change, or a change under ~50 lines — the fork costs more than the work;
 - for a step whose output the next step needs at once — that is sequential work, do it;
 - when `--no-forks` was passed;
-- to talk to the Summoner, or to decide anything the plan left open — decisions are the Daemon's,
+- to talk to the Summoner, or to decide anything the map left open — decisions are the Daemon's,
   with the Summoner.
 
 **Three at once at most.** Wait for them before forking more.
@@ -43,7 +43,7 @@ Every fork is given, in its prompt:
 2. **its files** — an explicit list for a hand; a directory or a question for a scout or an eye;
 3. the profile's `exec.prefix`, `lint`, `testScoped` and `timeoutTool`, so it runs things the
    right way (`exec.md`);
-4. a **do-not-touch** list: the files other forks hold, the base branch, anything the plan
+4. a **do-not-touch** list: the files other forks hold, the base branch, anything the map
    names as off limits;
 5. the report shape it must return (above).
 
