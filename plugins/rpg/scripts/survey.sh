@@ -21,7 +21,9 @@ say test-config "$(present phpunit.xml phpunit.xml.dist pytest.ini tox.ini setup
 say containers "$(present docker-compose.yml docker-compose.yaml compose.yml compose.yaml Dockerfile Dockerfile.dev .devcontainer/devcontainer.json)"
 say ci "$(ls .github/workflows/*.yml .github/workflows/*.yaml .gitlab-ci.yml 2>/dev/null | tr '\n' ' ')"
 if ls .github/workflows/*.y*ml >/dev/null 2>&1; then
-  echo "ci-run-lines:"; grep -h -E '^\s*run:' .github/workflows/*.y*ml 2>/dev/null | sed 's/^\s*/    /' | head -15
+  echo "ci-run-lines:"
+  # `- run:` is how a step is written; matching only `run:` misses nearly all of them.
+  grep -h -E '^[[:space:]]*-?[[:space:]]*run:' .github/workflows/*.y*ml 2>/dev/null | sed 's/^[[:space:]]*/    /' | head -15
 fi
 say scripts "$( [ -f package.json ] && grep -E '"(test|lint|build|start)"\s*:' package.json | sed 's/^\s*//' | tr '\n' ' ' )$( [ -f composer.json ] && grep -A6 '"scripts"' composer.json | grep -E '"[a-z:-]+"\s*:' | sed 's/^\s*//' | tr '\n' ' ' )"
 say moodle "$( [ -f version.php ] && grep -q 'plugin->component' version.php 2>/dev/null && echo 'plugin (version.php has $plugin->component)' || echo no )"
@@ -30,7 +32,7 @@ say docker "$( command -v docker >/dev/null 2>&1 && (docker info --format '{{.Op
 say timeout-tool "$( (timeout 1 true >/dev/null 2>&1 && echo timeout) || (gtimeout 1 true >/dev/null 2>&1 && echo gtimeout) || echo none )"
 say host-runtimes "$(for c in php python3 node ruby go; do command -v $c >/dev/null 2>&1 && printf '%s=%s ' "$c" "$($c --version 2>&1 | head -1 | grep -oE '[0-9]+\.[0-9]+(\.[0-9]+)?' | head -1)"; done)"
 say gh "$(gh auth status 2>&1 | grep -E 'Logged in|not logged' | head -1 | sed 's/^\s*//' || echo 'gh not installed')"
-say quests "$( [ -d .quests ] && ls -1 .quests | grep -v '^lore.md$' | wc -l | tr -d ' ' || echo 'no .quests/' )"
+say quests "$( [ -d .quests ] && find .quests -mindepth 1 -maxdepth 1 -type f ! -name 'lore.md' | wc -l | tr -d ' ' || echo 'no .quests/' )"
 say lore "$( [ -f .quests/lore.md ] && wc -l < .quests/lore.md | tr -d ' ' || echo 0 ) learnings"
 say ignored "$(for p in .quests/ .claude/repo-profile.json; do printf '%s=%s ' "$p" "$(git check-ignore -q "$p" 2>/dev/null && echo yes || echo no)"; done)"
 say global-excludes "$(git config --global core.excludesFile 2>/dev/null || echo 'unset — git uses ~/.config/git/ignore')"

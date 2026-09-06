@@ -12,7 +12,7 @@ skills in a throwaway repository.
 | What | Command |
 |---|---|
 | Install | none — load it with `claude --plugin-dir /Users/hc/Projects/claude-rpg/plugins/rpg`, or `/plugin marketplace add /Users/hc/Projects/claude-rpg` + `/plugin install rpg@claude-rpg` |
-| Test | `claude plugin validate plugins/rpg && claude plugin validate plugins/rpg/skills && claude plugin validate plugins/rpg/agents`, then `echo '{"tool_input":{"command":"git push --force origin x"}}' \| plugins/rpg/scripts/guard.sh` must exit 2 and a push to `quest/x` must exit 0 |
+| Test | `claude plugin validate plugins/rpg && claude plugin validate plugins/rpg/skills && claude plugin validate plugins/rpg/agents`, then `bash evals/guard/cases.sh` (the guard's behaviour cases, with and without `jq`) |
 | Lint | `claude plugin validate .` (the `version` warning is intended) |
 | Build | none — nothing is generated |
 | Run | `claude --plugin-dir /Users/hc/Projects/claude-rpg/plugins/rpg`, then `/rpg:summon` in any repository; `/reload-plugins` picks up edits |
