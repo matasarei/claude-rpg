@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# The Archmage's guard — a PreToolUse hook on Bash while a quest is on.
+# The Daemon's guard — a PreToolUse hook on Bash while a quest is on.
 # Reads the hook's JSON on stdin, looks at tool_input.command, and refuses
 # (exit 2, reason on stderr) the things no quest may do:
 #   git push --force / --force-with-lease / -f

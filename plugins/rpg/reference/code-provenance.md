@@ -56,7 +56,7 @@ can. An idiom everyone writes is nothing.
 ## Finding the source
 
 A tell says a block *looks* copied. Finding where from is a search, and it is the one thing in
-this plugin that sends fragments of the code outside the machine — so the Archmage does it only
+this plugin that sends fragments of the code outside the machine — so the Daemon does it only
 when the Medium asks in the chat, and says how much it sent.
 
 1. **Candidates.** Files the tells pointed at, hits from the sweep's provenance group, and the

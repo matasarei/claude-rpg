@@ -125,7 +125,7 @@ decision: null
 **Road-back test:** one file, six lines, same area — **now** is reasonable; **after** is safe.
 ```
 
-The three words and when the Archmage suggests each:
+The three words and when the Daemon suggests each:
 
 - **now** — it blocks the trial; or the current quest touches the same files, so later means a
   conflict and a long road back; or it is one file and a few lines;

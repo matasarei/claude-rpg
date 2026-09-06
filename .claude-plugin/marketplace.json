@@ -1,6 +1,6 @@
 {
   "name": "claude-rpg",
-  "description": "Claude RPG: Claude Code skills where Claude is the Archmage of your party and you are the Medium. Work is quests, questlines and sidequests; a quest ends when its pull request is merged.",
+  "description": "Claude RPG: Claude Code skills where you are the Medium between reality and the project, and Claude is the Daemon that works inside the machine. Work is quests, questlines and sidequests; a quest ends when its pull request is merged.",
   "owner": {
     "name": "Yevhen Matasar",
     "url": "https://github.com/matasarei"

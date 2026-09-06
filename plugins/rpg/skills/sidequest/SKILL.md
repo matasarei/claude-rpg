@@ -1,6 +1,6 @@
 ---
 name: sidequest
-description: Things found on the road that are not blocking — a bug beside the one being fixed, a missing check, a small refactor. Records one, lists them, takes one (it becomes a quest), or drops one with the reason kept. The Archmage suggests now, after or never with the road-back test.
+description: Things found on the road that are not blocking — a bug beside the one being fixed, a missing check, a small refactor. Records one, lists them, takes one (it becomes a quest), or drops one with the reason kept. The Daemon suggests now, after or never with the road-back test.
 argument-hint: "[<what was found>] [--list] [--take <slug>] [--drop <slug>]"
 disable-model-invocation: true
 allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/voice.sh) Bash(git status *) Bash(git branch *) Bash(git log *) Bash(ls *) Bash(cat *)

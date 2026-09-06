@@ -7,7 +7,7 @@ a step turns out to be wrong, it stops and says so.
 ## Before the first step
 
 - The branch is `quest/<slug>` (preflight made it). Never cast on the base branch.
-- `git status --short` shows only the Archmage's own work. Someone else's uncommitted changes
+- `git status --short` shows only the Daemon's own work. Someone else's uncommitted changes
   → stop and ask; do not build on half-finished work that is not yours.
 - Re-read the Plan's **Test order** line and follow it.
 
@@ -37,13 +37,13 @@ for the right reason. A test that passes against code not yet written is testing
 out why before going on. Then the smallest change that makes it pass. The step is not done until
 its test is green.
 
-## Mirrors in the cast
+## Forks in the cast
 
-When two or more remaining steps touch disjoint files and change no shared interface, summon one
-`mirror-caster` per part, three at most, each with its file list and a do-not-touch list
-(`mirrors.md`). The Archmage keeps the steps that bind the parts together — the command, the
-wiring, the shared test — and the commits: a mirror's diff is read, its scoped test is re-run by
-the Archmage, then committed by the Archmage. Not with `--no-mirrors`; not for a change under
+When two or more remaining steps touch disjoint files and change no shared interface, fork one
+`fork-hand` per part, three at most, each with its file list and a do-not-touch list
+(`forks.md`). The Daemon keeps the steps that bind the parts together — the command, the
+wiring, the shared test — and the commits: a fork's diff is read, its scoped test is re-run by
+the Daemon, then committed by the Daemon. Not with `--no-forks`; not for a change under
 about fifty lines.
 
 ## Stay inside the quest

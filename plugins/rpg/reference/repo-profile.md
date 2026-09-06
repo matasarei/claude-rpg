@@ -271,8 +271,8 @@ Each of these missing, in code that writes to the database, is a blocker — not
 
 ## Cost discipline
 
-The party can afford more than a lone traveller, and `mirrors.md` says when the Archmage may
-summon mirror copies. Everything else stays lean, because it is what keeps a quest readable:
+The party can afford more than a lone traveller, and `forks.md` says when the Daemon may
+fork. Everything else stays lean, because it is what keeps a quest readable:
 
 - **Read the diff, not the repository.** Full-file reads at the trial are capped at the five
   highest-risk files; everything else is judged from the diff, and the trial says which.

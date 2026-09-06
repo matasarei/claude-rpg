@@ -30,8 +30,8 @@ doc named in the profile for the conventions the plan must follow.
 this is the best possible finding: point at it, write it in Findings, and the quest is `done`.
 
 Five files read in full at most. Everything else is judged from the search hits. When the area
-is large and unfamiliar and five is not enough, summon a `mirror-scout` (`mirrors.md`) — unless
-`--no-mirrors` was passed, in which case say the read was capped.
+is large and unfamiliar and five is not enough, fork a scout — `fork-scout`, see `forks.md` — unless
+`--no-forks` was passed, in which case say the read was capped.
 
 ## 3. Check the facts
 

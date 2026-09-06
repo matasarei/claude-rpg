@@ -1,6 +1,6 @@
 ---
 name: questline
-description: A road of quests to one goal — a refactoring, a big feature, anything too large for one pull request. The Archmage investigates the goal, splits it into ordered quests that each merge alone and leave the base branch working, writes the questline and its quest files, asks the Medium to bless the road, then starts the first quest. --continue after a merge takes the next.
+description: A road of quests to one goal — a refactoring, a big feature, anything too large for one pull request. The Daemon investigates the goal, splits it into ordered quests that each merge alone and leave the base branch working, writes the questline and its quest files, asks the Medium to bless the road, then starts the first quest. --continue after a merge takes the next.
 argument-hint: "<goal> | <.quests/questline-*.md> [--continue]"
 disable-model-invocation: true
 allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/voice.sh) Bash(git status *) Bash(git branch *) Bash(git log *) Bash(git diff *) Bash(gh pr list *) Bash(ls *) Bash(cat *)
@@ -43,7 +43,7 @@ with "no such questline file"; otherwise a goal. Nothing → ask what the goal i
 2. **Investigate the goal**, not the first step — read
    `${CLAUDE_PLUGIN_ROOT}/reference/investigate.md` and apply it at the goal's level: what
    exists, what must change, in what order, what must not be touched, the facts tagged. The
-   `mirror-scout` is welcome here (`${CLAUDE_PLUGIN_ROOT}/reference/mirrors.md`).
+   `fork-scout` is welcome here (`${CLAUDE_PLUGIN_ROOT}/reference/forks.md`).
 3. **Cut the road.** Split the goal into ordered quests. Each quest: one sentence, one pull
    request, mergeable alone, **the base branch still works after its merge** — a flag, a stub
    or a compatibility shim is part of the quest when the cut needs one. Three to seven quests is

@@ -42,6 +42,6 @@ of this.
 
 ## Someone else's tree
 
-The judgement phase of a quest may run a test or lint command over commits the Archmage did
+The judgement phase of a quest may run a test or lint command over commits the Daemon did
 not write — a reviewer's suggestion pushed onto the branch, say. In a container the blast radius is the container; on `exec.kind: host` it is the
 Medium's machine and credentials — say so and ask first (`${CLAUDE_PLUGIN_ROOT}/reference/untrusted-input.md`).

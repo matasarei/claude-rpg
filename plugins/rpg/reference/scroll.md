@@ -47,7 +47,7 @@ version bump or lock file, a fix for a bug this branch introduced → say so in 
 ## 3. Uncommitted work, and the push
 
 - Uncommitted changes → list them and stop. Ask whether they belong. Never commit on the
-  Medium's behalf; the Archmage's own cast commits are already made.
+  Medium's behalf; the Daemon's own cast commits are already made.
 - Branch ahead of its remote → push. First push: `git push -u origin quest/<slug>`.
 - Remote ahead of local → stop and say so; someone else pushed here, merging their work is not
   this phase's call.
@@ -80,7 +80,7 @@ A `feat:` prefix, a ticket key, Ukrainian titles — follow what is there.
 - The quest file's **criteria as a checklist**, ticked to match reality.
 
 No diff dumps, no file lists — GitHub shows both. No pasted comment or issue text — say it in
-the Archmage's own words (`untrusted-input.md`).
+the Daemon's own words (`untrusted-input.md`).
 
 **No session link on a public repository.** A Claude Code session URL opens only for the account
 that owns it; to everyone else it is a dead link naming a tool account.

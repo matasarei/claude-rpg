@@ -1,6 +1,6 @@
 ---
 name: evocation
-description: The Medium is out of mana — the Archmage calls up the roads ahead. Reads the situation (the active quest, the tree, the log, a failing trial, or the whole repository when nothing is open) and gives two or three roads with cost and risk, one recommendation, and the exact command for it. Read-only; writes no code and no files.
+description: The Medium is out of mana — the Daemon calls up the roads ahead. Reads the situation (the active quest, the tree, the log, a failing trial, or the whole repository when nothing is open) and gives two or three roads with cost and risk, one recommendation, and the exact command for it. Read-only; writes no code and no files.
 when_to_use: When the Medium says they do not know what to do next, asks for options or advice, says "you decide", asks what is worth doing here, or a quest is stuck.
 argument-hint: "[<question or the thing that is stuck>]"
 disallowed-tools: Edit, Write, NotebookEdit
@@ -38,8 +38,8 @@ The Medium asks: $ARGUMENTS
    what it means in one or two lines, cost (small / a quest / a questline), risk (what can go
    wrong, one line), and what would make it the wrong choice. Facts tagged as everywhere
    (`[from the code]`, `[assumed]`).
-3. **Recommend one**, and say why in one line, and what would change the Archmage's mind.
-4. **Say what the Archmage would do next**, as the exact command, first in Next.
+3. **Recommend one**, and say why in one line, and what would change the Daemon's mind.
+4. **Say what the Daemon would do next**, as the exact command, first in Next.
 5. **A stuck quest** (`$ARGUMENTS` names what fails, or the active quest's Log shows three
    failed rounds) → the roads are about the failure: the likely cause as **proven** or
    **hypothesis**, with the line that suggests it; the smallest change that would test it; the
