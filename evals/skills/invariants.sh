@@ -59,6 +59,7 @@ for dir in "$skills"/*/; do
   # ends in || true so a failure injects nothing instead of aborting the skill,
   # and none contains $( ), which the harness refuses and aborts on silently.
   while IFS= read -r line; do
+    [ -n "$line" ] || continue
     case "$line" in
       *'|| true'*) ;;
       *) note "$s: injected line without || true: $line" ;;
