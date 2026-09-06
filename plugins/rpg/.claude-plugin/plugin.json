@@ -1,8 +1,27 @@
 {
   "name": "rpg",
-  "description": "Claude RPG: you are the Summoner, Claude is the Daemon you call, bound by a pact. /rpg:summon (call the Daemon into a repository), /rpg:quest (scry, cast, trial, scroll, the Summoner's judgement, merge), /rpg:questline (a road of quests to one goal), /rpg:sidequest (things found on the road), /rpg:journal (where are we), /rpg:evocation (roads ahead when you are out of mana). The Daemon forks (subagents that are copies of itself) when there is too much for one process, and may ask spirits (other agents) but never trusts them with the code.",
-  "author": { "name": "Yevhen Matasar", "url": "https://github.com/matasarei" },
+  "description": "Claude Code plugin that runs development as an RPG. You are the Summoner, Claude is the Daemon you call, bound by a pact. /rpg:summon surveys a repository; /rpg:quest scries the code, casts the change with a commit per step, holds the trial (lint, tests, review, security), writes the pull request and merges on your word; /rpg:questline cuts a big goal into quests; /rpg:sidequest keeps what turns up on the way; /rpg:journal shows where things stand; /rpg:evocation lays out roads when you are stuck. Subagent forks take independent parts, a guard hook refuses force pushes, every fact carries its source, and the game never reaches your code, docs or pull requests.",
+  "author": {
+    "name": "Yevhen Matasar",
+    "url": "https://github.com/matasarei"
+  },
   "license": "MIT",
   "repository": "https://github.com/matasarei/claude-rpg",
-  "keywords": ["rpg", "quest", "workflow", "pull-request", "subagents", "game"]
+  "keywords": [
+    "claude-code",
+    "claude-code-plugin",
+    "claude-code-skills",
+    "agent-skills",
+    "agentic-workflow",
+    "ai-agent",
+    "developer-tools",
+    "pull-request",
+    "code-review",
+    "subagents",
+    "hooks",
+    "workflow",
+    "rpg",
+    "quest",
+    "gamification"
+  ]
 }

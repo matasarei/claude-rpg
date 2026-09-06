@@ -1,6 +1,6 @@
 {
   "name": "claude-rpg",
-  "description": "Claude RPG: Claude Code skills where you are the Summoner who brings what the machine cannot show, and Claude is the Daemon that works inside it. Work is quests, questlines and sidequests; a quest ends when its pull request is merged.",
+  "description": "Claude Code plugin marketplace for Claude RPG: development as a role-playing game. You are the Summoner, Claude is the Daemon; work is quests that run from scrying to a merged pull request, questlines for big goals, sidequests for what turns up on the way, subagent forks, a guard hook, and a pact that keeps the game out of your code, docs and pull requests.",
   "owner": {
     "name": "Yevhen Matasar",
     "url": "https://github.com/matasarei"
@@ -13,10 +13,29 @@
       "name": "rpg",
       "displayName": "Claude RPG",
       "source": "./plugins/rpg",
-      "description": "Play development as a party: /rpg:summon, /rpg:quest, /rpg:questline, /rpg:sidequest, /rpg:journal, /rpg:evocation. One quest = investigate, cast, trial, scroll (PR), the Summoner's judgement, merge.",
-      "author": { "name": "Yevhen Matasar", "url": "https://github.com/matasarei" },
+      "description": "Claude Code skills that run development as an RPG: /rpg:summon (survey a repository), /rpg:quest (scry, cast, trial, pull request, review, merge), /rpg:questline (a road of quests to one goal), /rpg:sidequest, /rpg:journal (status), /rpg:evocation (options when you are stuck). Subagent forks for parallel work, a PreToolUse guard hook against force pushes, evidence-tagged facts, plain professional output.",
+      "author": {
+        "name": "Yevhen Matasar",
+        "url": "https://github.com/matasarei"
+      },
       "license": "MIT",
-      "keywords": ["rpg", "quest", "workflow", "pull-request", "subagents", "game"],
+      "keywords": [
+        "claude-code",
+        "claude-code-plugin",
+        "claude-code-skills",
+        "agent-skills",
+        "agentic-workflow",
+        "ai-agent",
+        "developer-tools",
+        "pull-request",
+        "code-review",
+        "subagents",
+        "hooks",
+        "workflow",
+        "rpg",
+        "quest",
+        "gamification"
+      ],
       "category": "productivity"
     }
   ]
