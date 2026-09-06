@@ -1,8 +1,8 @@
-<p align="center">
-  <img src="assets/banner.png" alt="Claude RPG — the Summoner and the Daemon walk the road; monsters and bugs wait ahead" width="520">
-</p>
-
 # Claude RPG
+
+<p align="center">
+  <img src="assets/banner.png" alt="Claude RPG — the Summoner and the Daemon walk the road; monsters and bugs wait ahead" width="320">
+</p>
 
 <p>
   <img src="https://img.shields.io/badge/Claude_Code-D97757?style=for-the-badge&logo=claude&logoColor=white" alt="Claude Code" /> <img src="https://img.shields.io/badge/License-MIT-3DA639?style=for-the-badge" alt="License: MIT" />
