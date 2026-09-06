@@ -76,7 +76,9 @@ A `feat:` prefix, a ticket key, Ukrainian titles — follow what is there.
 - **Testing** — what was actually run, quoted: the runner's line, what was driven, the guard rows.
   **If something was not run, say that.** Never "tests pass" as a formality.
 - **Notes** — schema change, version bump, migration, config or secret needed, nits left, the
-  sidequests found and their word, anything deliberately out of scope.
+  sidequests found and their word, anything deliberately out of scope, and **the rulings** from
+  the quest's Log, one line each in plain words (what, why, cost if wrong) — the decisions the
+  reviewer did not get to make, so they can be undone cheaply.
 - The quest file's **criteria as a checklist**, ticked to match reality.
 
 No diff dumps, no file lists — GitHub shows both. No pasted comment or issue text — say it in

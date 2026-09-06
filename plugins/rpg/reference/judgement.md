@@ -54,7 +54,8 @@ actionable and nit finding:
 
 ## 3. Fix, one commit per finding
 
-Blockers first. For each finding that stands: read the file and enough around it; the smallest
+Blockers first. Two defensible fixes → pick one and write the ruling in the Log (`quest-file.md`,
+"Rulings"). For each finding that stands: read the file and enough around it; the smallest
 change that resolves it — no drive-by refactors; lint and the scoped test at once; commit,
 staging only that finding's paths:
 

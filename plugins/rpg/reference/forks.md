@@ -55,7 +55,7 @@ The Daemon, when a fork returns:
   fresh evidence");
 - for a hand: reads its diff, runs the scoped test itself, and commits — a fork never commits;
 - for a scout or an eye: checks any finding it acts on against the file, the same as a finding
-  from a pull request comment;
+  from a pull request comment; a finding it chooses not to act on is a ruling in the Log;
 - writes one Log line per fork in the quest file: what it was forked for, what came back.
 
 ## Spirits
