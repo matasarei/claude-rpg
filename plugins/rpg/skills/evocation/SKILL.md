@@ -28,7 +28,7 @@ The Summoner asks: $ARGUMENTS
 ## Steps
 
 1. **Read the situation, not the whole world.** In order, stopping when the question is clear:
-   the active quest file (its Findings, Plan, last Log lines — a failing trial's quoted line
+   the active quest file (its Findings, Map, last Log lines — a failing trial's quoted line
    above all); the question in `$ARGUMENTS`; the tree and the recent log; open scrolls and
    issues (`gh pr list`, `gh issue list`, when `gh` is there); when nothing is open and no
    question was asked, the standards doc, the test command's state, and a short look at the

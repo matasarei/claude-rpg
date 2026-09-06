@@ -1,7 +1,7 @@
 # Cast — build it, one step at a time
 
-The second phase. It follows the quest file's Plan in order, ticks each step as it lands, and
-commits per step. It does not think the problem through again; that was investigate's job. When
+The second phase. It follows the quest file's Map in order, ticks each step as it lands, and
+commits per step. It does not think the problem through again; that was scrying's job. When
 a step turns out to be wrong, it stops and says so.
 
 ## Before the first step
@@ -9,7 +9,7 @@ a step turns out to be wrong, it stops and says so.
 - The branch is `quest/<slug>` (preflight made it). Never cast on the base branch.
 - `git status --short` shows only the Daemon's own work. Someone else's uncommitted changes
   → stop and ask; do not build on half-finished work that is not yours.
-- Re-read the Plan's **Test order** line and follow it.
+- Re-read the Map's **Test order** line and follow it.
 
 ## Each step, in order
 
@@ -52,16 +52,16 @@ Something unrelated and broken, noticed on the way → a sidequest file, `status
 at the next stop with **now / after / never** (`quest-file.md`). Never fixed silently: scope
 creep is how a reviewable change becomes an unreviewable one.
 
-Something the plan needs but did not name — a helper, a migration, a version bump → part of the
+Something the map needs but did not name — a helper, a migration, a version bump → part of the
 current step; say so in its tick line.
 
 ## When a step is wrong
 
 The code says the step cannot be done as written — the class does not exist, the table is
 shaped differently, the neighbour already does it. **Stop.** Say what was found, propose the
-correction to the Plan, and wait. Do not quietly build something different from what was
+correction to the Map, and wait. Do not quietly build something different from what was
 planned. If the correction is small and obvious, propose and proceed in the same message; if it
-changes the road, it is a plan stop again, and the Next block says
+changes the road, it is a map stop again, and the Next block says
 `/rpg:quest --continue .quests/<slug>.md`.
 
 A step already done — someone got there first → tick it with "already there", note it, move on.
@@ -92,7 +92,7 @@ Set `status: trial` in the quest file, one Log line, and go to `trial.md`.
 
 - Never `--force`, `--no-verify`, `--amend`. A failing hook means the code needs fixing.
 - Never weaken or delete an existing test to get to green. If a test is wrong, say so and why.
-- Never touch anything on the Plan's **Do not touch** list without a plan stop.
+- Never touch anything on the Map's **Do not touch** list without a map stop.
 - Data-safety rules are not optional: anything writing in bulk has dry-run by default, is safe
   to run twice, has bounded scope and an expected row count that aborts when reality disagrees
   (`repo-profile.md`).

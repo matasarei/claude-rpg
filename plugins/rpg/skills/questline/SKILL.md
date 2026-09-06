@@ -1,6 +1,6 @@
 ---
 name: questline
-description: A road of quests to one goal — a refactoring, a big feature, anything too large for one pull request. The Daemon investigates the goal, splits it into ordered quests that each merge alone and leave the base branch working, writes the questline and its quest files, asks the Summoner to bless the road, then starts the first quest. --continue after a merge takes the next.
+description: A road of quests to one goal — a refactoring, a big feature, anything too large for one pull request. The Daemon scries the goal, splits it into ordered quests that each merge alone and leave the base branch working, writes the questline and its quest files, asks the Summoner to bless the road, then starts the first quest. --continue after a merge takes the next.
 argument-hint: "<goal> | <.quests/questline-*.md> [--continue]"
 disable-model-invocation: true
 allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/voice.sh) Bash(git status *) Bash(git branch *) Bash(git log *) Bash(git diff *) Bash(gh pr list *) Bash(ls *) Bash(cat *)
@@ -40,8 +40,8 @@ with "no such questline file"; otherwise a goal. Nothing → ask what the goal i
 1. **Preflight** as `/rpg:quest` does: summoned here (`.quests/` exists), profile present, tree clean of foreign changes.
    New goal → slug per `${CLAUDE_PLUGIN_ROOT}/reference/quest-file.md`, file
    `.quests/questline-<slug>.md`, `kind: questline`, `status: taken`.
-2. **Investigate the goal**, not the first step — read
-   `${CLAUDE_PLUGIN_ROOT}/reference/investigate.md` and apply it at the goal's level: what
+2. **Scry the goal**, not the first step — read
+   `${CLAUDE_PLUGIN_ROOT}/reference/scrying.md` and apply it at the goal's level: what
    exists, what must change, in what order, what must not be touched, the facts tagged. The
    `fork-scout` is welcome here (`${CLAUDE_PLUGIN_ROOT}/reference/forks.md`).
 3. **Cut the road.** Split the goal into ordered quests. Each quest: one sentence, one pull
@@ -49,7 +49,7 @@ with "no such questline file"; otherwise a goal. Nothing → ask what the goal i
    or a compatibility shim is part of the quest when the cut needs one. Three to seven quests is
    the usual road; more → say so and cut coarser. Write the Road into the questline file and one
    `.quests/<slug>.md` per quest with `status: planned`, `questline: <slug>`, its Asked line and
-   the Findings that belong to it. Later quests get less detail — their investigate phase will
+   the Findings that belong to it. Later quests get less detail — their scrying phase will
    fill it when their turn comes.
 4. **The map stop — one.** Show the road: the quests, one line each, in order, with the reason
    for the order and the biggest risk. Ask the Summoner to bless it, change it, or cut it

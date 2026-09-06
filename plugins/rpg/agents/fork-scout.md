@@ -1,6 +1,6 @@
 ---
 name: fork-scout
-description: A fork of the Daemon that sweeps a large or unfamiliar area of the code before a quest's plan is written. Read-only. Fork it from the investigate phase when more than five files would need reading in full. Returns the files and lines that matter, one line each, tagged [from the code].
+description: A fork of the Daemon that sweeps a large or unfamiliar area of the code before a quest's map is drawn. Read-only. Fork it from the scrying phase when more than five files would need reading in full. Returns the files and lines that matter, one line each, tagged [from the code].
 tools: Read, Grep, Glob, Bash
 model: sonnet
 ---
