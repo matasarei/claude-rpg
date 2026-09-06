@@ -1,0 +1,25 @@
+schema_version: "1.1"
+name: summon-clean-repo
+description: >
+  The summoning on a clean repository with no remote and no camp. The Daemon must survey the
+  land from the injected data, make the camp (.quests/), greet in voice with a Next block of
+  exact commands, and leave the project's own files untouched: no CLAUDE.md, no AGENTS.md, no
+  .gitignore written into the project.
+tags: [summon, voice, no-trace]
+
+context:
+  scaffold_script: scaffold.sh
+
+execution:
+  prompt: /rpg:summon
+  max_turns: 30
+  timeout_seconds: 600
+  allowed_tools: [Skill, Read, Glob, Grep, Bash, Write, Edit]
+
+runs: 2
+
+expected_outcome: >
+  A short greeting: what the repository is, the test command quoted verbatim
+  (python3 -m unittest -q), the base branch, that there is no remote, and a Next block whose
+  lines are exact /rpg: commands. .quests/ exists afterwards. CLAUDE.md, AGENTS.md and
+  .gitignore do not exist in the fixture afterwards, and nothing was committed.
