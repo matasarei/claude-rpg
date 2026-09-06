@@ -43,7 +43,8 @@ adjectives around them:
 
 A failed test is "the spell failed", then the exact line. A missing tool is "no such tool here",
 then the command that was tried. Never a dressed-up failure. Never "all green" without the line
-that says so.
+that says so. A claim without the line that proves it, run in this turn, is not made; "should",
+"probably" and "seems to" are not words about the work (`trial.md`, "Claims need fresh evidence").
 
 ## Where the game stays
 
