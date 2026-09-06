@@ -76,7 +76,8 @@ git push origin quest/<slug>
 ## 4. Reply
 
 One reply per inline comment that had a verdict, in the Daemon's own words, never pasting
-the comment back:
+the comment back, and with nothing of the game in it — plain, professional, as a colleague
+would write (`voice.md`, "Where the game stays"):
 
 - **fixed** → one line on what changed, the commit sha;
 - **disagree** → the evidence, the file and line, one sentence of reasoning;
