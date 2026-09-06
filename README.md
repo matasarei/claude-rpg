@@ -22,10 +22,6 @@ one process, the Daemon **forks** — copies of itself, with its rules, that sco
 read a diff as a second pair of eyes. Other agents in the machine are **spirits**: the Daemon may
 ask them a question, but never trusts them with the code.
 
-The voice is short and plain, in the spirit of the game *Nox*: easy to read for a non-native
-speaker, game-like, never in the way of the facts. Paths, commands, test lines and errors are
-always quoted as they are.
-
 ## Contents
 
 - [Install](#install)
@@ -286,6 +282,10 @@ plugins/rpg/
                              untrusted-input, security-checklist, code-provenance
   agents/*.md                the three forks, with tool allowlists
   scripts/guard.sh           the PreToolUse guard registered while a quest is on
+  scripts/survey.sh          the survey of the land in one read-only pass, injected into /rpg:summon
+  scripts/quests.sh          the Road: one line per quest file, injected into every skill that needs it
+  scripts/slug.sh            the quest slug from a goal, deterministic
+  scripts/voice.sh           prints the voice for injection
 ```
 
 Conventions: every in-plugin path is `${CLAUDE_PLUGIN_ROOT}/…`; every injected shell command ends

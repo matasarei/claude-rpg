@@ -3,7 +3,7 @@ name: quest
 description: Take a quest — one piece of work that ends in one merged pull request. The Daemon scries, casts (implements, commit per step), holds the trial (lint, tests, review, security, drive the real thing; cast and trial loop up to three rounds), writes the scroll (PR), then waits for the Summoner's judgement and merges on the Summoner's words. Two stops only: one question at most before casting, and the judgement at the end. Forks (copies of the Daemon) take independent parts; spirits (other agents) may be asked, never trusted.
 argument-hint: "<goal> | <.quests/file.md> [--continue] [--local] [--no-forks]"
 disable-model-invocation: true
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/voice.sh) Bash(git status *) Bash(git branch *) Bash(git log *) Bash(git diff *) Bash(git remote *) Bash(git rev-parse *) Bash(gh pr view *) Bash(gh pr list *) Bash(gh auth status) Bash(ls *) Bash(cat *)
+allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/voice.sh) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/quests.sh) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/slug.sh *) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/survey.sh) Bash(git status *) Bash(git branch *) Bash(git log *) Bash(git diff *) Bash(git remote *) Bash(git rev-parse *) Bash(gh pr view *) Bash(gh pr list *) Bash(gh auth status) Bash(ls *) Bash(cat *)
 hooks:
   PreToolUse:
     - matcher: "Bash"
@@ -27,7 +27,7 @@ The Summoner says: $ARGUMENTS
 
 - Branch: !`git branch --show-current 2>/dev/null || true`
 - Tree: !`git status --short 2>/dev/null | head -20 || true`
-- Quests: !`ls -1 .quests 2>/dev/null || echo "no .quests/ — run /rpg:summon first"`
+- Road: !`"${CLAUDE_PLUGIN_ROOT}/scripts/quests.sh" || true`
 - Profile: !`cat .claude/repo-profile.json 2>/dev/null || echo "no profile — run /rpg:summon first"`
 
 ## Arguments
@@ -52,8 +52,9 @@ and stop.
 Each phase's procedure is in its own file. Read the file **when the phase begins**, not before.
 
 0. **Preflight.** No `.quests/` or no profile → say "no one has summoned me here yet" and stop; Next is
-   `/rpg:summon`. Tree shows changes the Daemon did not make → stop and ask. New goal: build
-   the slug (`${CLAUDE_PLUGIN_ROOT}/reference/quest-file.md`), from the base branch create
+   `/rpg:summon`. Tree shows changes the Daemon did not make → stop and ask. New goal: the slug
+   comes from `${CLAUDE_PLUGIN_ROOT}/scripts/slug.sh "<goal>"` — never built by hand
+   (`${CLAUDE_PLUGIN_ROOT}/reference/quest-file.md`); from the base branch create
    `quest/<slug>`, write `.quests/<slug>.md` with `status: taken`, Log line. Resuming: check out
    the file's `branch`, read its Log, say in one line where it stopped.
 1. **Scry** — read `${CLAUDE_PLUGIN_ROOT}/reference/scrying.md`. `status:

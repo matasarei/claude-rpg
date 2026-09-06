@@ -4,7 +4,7 @@ description: Where are we — the active quest and its state, the questline's pr
 when_to_use: When the Summoner asks where things stand, what is open, what the status is, what was done, or which quest is next.
 argument-hint: ""
 disallowed-tools: Edit, Write, NotebookEdit
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/voice.sh) Bash(git status *) Bash(git branch *) Bash(git log *) Bash(gh pr list *) Bash(gh pr view *) Bash(ls *) Bash(cat *)
+allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/voice.sh) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/quests.sh) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/slug.sh *) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/survey.sh) Bash(git status *) Bash(git branch *) Bash(git log *) Bash(gh pr list *) Bash(gh pr view *) Bash(ls *) Bash(cat *)
 ---
 
 # /rpg:journal — where are we
@@ -19,15 +19,16 @@ Speak as the voice below says, from here on.
 
 - Branch: !`git branch --show-current 2>/dev/null || true`
 - Tree: !`git status --short 2>/dev/null | head -10 || true`
-- Quests: !`ls -1 .quests 2>/dev/null || echo "no .quests/ — run /rpg:summon first"`
+- Road: !`"${CLAUDE_PLUGIN_ROOT}/scripts/quests.sh" || true`
 - Scrolls awaiting: !`gh pr list --author @me --state open --json number,title,url,headRefName 2>/dev/null || echo "gh not available"`
 
 ## Steps
 
 1. No `.quests/` → "no one has summoned me here yet", Next is `/rpg:summon`, stop.
-2. Read only the frontmatter and the last Log line of every file in `.quests/`
-   (`${CLAUDE_PLUGIN_ROOT}/reference/quest-file.md`). Do not read the bodies; the journal is a
-   glance, not a study.
+2. The Road table above **is** the journal: one line per file with kind, status, branch, pull
+   request, decision and the last Log line (`${CLAUDE_PLUGIN_ROOT}/reference/quest-file.md`).
+   Do not open the quest files; a glance, not a study. Open one only when its criteria count
+   (`n/m`) is asked for and worth it.
 3. Report, in this order, each part only when it has something:
    - **The active quest** — title, state, branch, last Log line, the criteria ticked so far
      (`n/m`). Banner: `⚔ <title> · <state>`. Two quests not done and not postponed → both, and say

@@ -3,7 +3,7 @@ name: summon
 description: The Summoner calls the Daemon into this repository. It answers, surveys the land (profile), makes camp (.quests/, ignored through git's global excludes, never the project's .gitignore), checks gh and origin, reads the laws of the land (CLAUDE.md and friends, read only, never written), and greets the Summoner with what is open and what to do next. Run once per repository, again after big changes.
 argument-hint: "[--reprofile]"
 disable-model-invocation: true
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/voice.sh) Bash(git config --global core.excludesFile) Bash(git check-ignore *) Bash(git status *) Bash(git branch *) Bash(git remote *) Bash(git log *) Bash(git rev-parse *) Bash(git check-ignore *) Bash(git ls-files *) Bash(gh auth status) Bash(gh pr list *) Bash(gh repo view *) Bash(ls *) Bash(cat *) Bash(uname *) Bash(which *) Bash(timeout 1 true) Bash(gtimeout 1 true)
+allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/voice.sh) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/quests.sh) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/slug.sh *) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/survey.sh) Bash(git config --global core.excludesFile) Bash(git check-ignore *) Bash(git status *) Bash(git branch *) Bash(git remote *) Bash(git log *) Bash(git rev-parse *) Bash(git check-ignore *) Bash(git ls-files *) Bash(gh auth status) Bash(gh pr list *) Bash(gh repo view *) Bash(ls *) Bash(cat *) Bash(uname *) Bash(which *) Bash(timeout 1 true) Bash(gtimeout 1 true)
 ---
 
 # /rpg:summon — the Summoner calls, the Daemon answers
@@ -18,23 +18,25 @@ The Summoner says: $ARGUMENTS
 
 ## The land, as it stands
 
-- Repository root: !`git rev-parse --show-toplevel 2>/dev/null || echo "not a git repository"`
-- Branch: !`git branch --show-current 2>/dev/null || true`
-- Remotes: !`git remote -v 2>/dev/null | head -2 || true`
-- gh: !`gh auth status 2>&1 | head -3 || true`
-- Camp: !`ls -1 .quests 2>/dev/null || echo "no .quests/ yet"`
-- Laws: !`ls CLAUDE.md AGENTS.md CONTRIBUTING.md README.md 2>/dev/null || echo "no standards doc"`
+```!
+"${CLAUDE_PLUGIN_ROOT}/scripts/survey.sh" || true
+```
+
 - Profile: !`cat .claude/repo-profile.json 2>/dev/null || echo "no profile yet"`
-- Global excludes file: !`git config --global core.excludesFile 2>/dev/null || echo "unset — git uses ~/.config/git/ignore"`
-- `.quests/` hidden already: !`git check-ignore -q .quests/ 2>/dev/null && echo yes || echo no`
-- profile hidden already: !`git check-ignore -q .claude/repo-profile.json 2>/dev/null && echo yes || echo no`
+- Road: !`"${CLAUDE_PLUGIN_ROOT}/scripts/quests.sh" || true`
+
+The survey above is the land as the tools see it. Decide from it; run a check by hand only for
+what it did not settle (a compose service that mounts the code, an image mount test), never to
+re-check what it already says.
 
 ## Steps
 
 1. **Not a git repository** → say so in one line and stop; a summoning needs a repository.
    The Next block offers `git init` for the Summoner to run, nothing else.
-2. **Survey the land.** No profile, or `--reprofile` → detect and cache it per
-   `${CLAUDE_PLUGIN_ROOT}/reference/repo-profile.md`, then print the commands it stores — the
+2. **Survey the land.** No profile, or `--reprofile` → fill the profile from the survey above
+   per `${CLAUDE_PLUGIN_ROOT}/reference/repo-profile.md` (the survey already holds the platform,
+   base branch, standards doc, manifests, CI run lines, containers, timeout tool, host runtimes
+   and `gh`), then print the commands it stores — the
    Summoner must see what will run from now on. A profile that is tracked by git
    (`git ls-files --error-unmatch .claude/repo-profile.json`) is not executed: say so, re-detect,
    and report it as a finding. A profile that exists and works → keep it, say "the land is known".
@@ -59,9 +61,9 @@ The Summoner says: $ARGUMENTS
    written.** None at all → say so in one line; the quests then follow the neighbours' style.
    The party never writes a `CLAUDE.md` or `AGENTS.md`, never edits one, and never adds the
    game's words to the project.
-5. **The road so far.** Read the frontmatter and last Log line of every file in `.quests/`
-   (`${CLAUDE_PLUGIN_ROOT}/reference/quest-file.md`); `gh pr list --author @me --state open` for
-   scrolls awaiting. Note `gh` missing or signed out — quests can still be cast, scrolls will be
+5. **The road so far.** The Road table above is the journal — one line per quest with its
+   state and last Log line (`${CLAUDE_PLUGIN_ROOT}/reference/quest-file.md`); do not open the
+   quest files. `gh pr list --author @me --state open` for scrolls awaiting. Note `gh` missing or signed out — quests can still be cast, scrolls will be
    handed over as a compare URL.
 6. **Greet.** Under no banner (no quest is active yet), in voice, at most ten lines: what this
    place is (one line from the standards doc or the manifest), how it is tested (the profile's

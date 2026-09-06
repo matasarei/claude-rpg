@@ -4,7 +4,7 @@ description: The Summoner is out of mana — the Daemon calls up the roads ahead
 when_to_use: When the Summoner says they do not know what to do next, asks for options or advice, says "you decide", asks what is worth doing here, or a quest is stuck.
 argument-hint: "[<question or the thing that is stuck>]"
 disallowed-tools: Edit, Write, NotebookEdit
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/voice.sh) Bash(git status *) Bash(git branch *) Bash(git log *) Bash(git diff *) Bash(git grep *) Bash(gh pr list *) Bash(gh pr view *) Bash(gh issue list *) Bash(ls *) Bash(cat *) Bash(wc *) Bash(find *)
+allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/voice.sh) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/quests.sh) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/slug.sh *) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/survey.sh) Bash(git status *) Bash(git branch *) Bash(git log *) Bash(git diff *) Bash(git grep *) Bash(gh pr list *) Bash(gh pr view *) Bash(gh issue list *) Bash(ls *) Bash(cat *) Bash(wc *) Bash(find *)
 ---
 
 # /rpg:evocation — the roads ahead
@@ -22,13 +22,14 @@ The Summoner asks: $ARGUMENTS
 
 - Branch: !`git branch --show-current 2>/dev/null || true`
 - Tree: !`git status --short 2>/dev/null | head -10 || true`
-- Quests: !`ls -1 .quests 2>/dev/null || echo "no .quests/"`
+- Road: !`"${CLAUDE_PLUGIN_ROOT}/scripts/quests.sh" || true`
 - Recent road: !`git log --oneline -8 2>/dev/null || true`
 
 ## Steps
 
 1. **Read the situation, not the whole world.** In order, stopping when the question is clear:
-   the active quest file (its Findings, Map, last Log lines — a failing trial's quoted line
+   the Road table above (state and last Log line of every quest, no file opened), then the
+   active quest file only when there is one (its Findings, Map, a failing trial's quoted line
    above all); the question in `$ARGUMENTS`; the tree and the recent log; open scrolls and
    issues (`gh pr list`, `gh issue list`, when `gh` is there); when nothing is open and no
    question was asked, the standards doc, the test command's state, and a short look at the
