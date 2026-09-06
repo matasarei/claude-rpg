@@ -3,7 +3,7 @@ name: questline
 description: A road of quests to one goal — a refactoring, a big feature, anything too large for one pull request. The Daemon scries the goal, splits it into ordered quests that each merge alone and leave the base branch working, writes the questline and its quest files, asks the Summoner to bless the road, then starts the first quest. --continue after a merge takes the next.
 argument-hint: "<goal> | <.quests/questline-*.md> [--continue]"
 disable-model-invocation: true
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/voice.sh) Bash(git status *) Bash(git branch *) Bash(git log *) Bash(git diff *) Bash(gh pr list *) Bash(ls *) Bash(cat *)
+allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/voice.sh) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/quests.sh) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/slug.sh *) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/survey.sh) Bash(git status *) Bash(git branch *) Bash(git log *) Bash(git diff *) Bash(gh pr list *) Bash(ls *) Bash(cat *)
 hooks:
   PreToolUse:
     - matcher: "Bash"
@@ -27,7 +27,7 @@ The Summoner says: $ARGUMENTS
 
 - Branch: !`git branch --show-current 2>/dev/null || true`
 - Tree: !`git status --short 2>/dev/null | head -20 || true`
-- Quests: !`ls -1 .quests 2>/dev/null || echo "no .quests/ — run /rpg:summon first"`
+- Road: !`"${CLAUDE_PLUGIN_ROOT}/scripts/quests.sh" || true`
 
 ## Arguments
 
@@ -38,7 +38,7 @@ with "no such questline file"; otherwise a goal. Nothing → ask what the goal i
 ## Steps
 
 1. **Preflight** as `/rpg:quest` does: summoned here (`.quests/` exists), profile present, tree clean of foreign changes.
-   New goal → slug per `${CLAUDE_PLUGIN_ROOT}/reference/quest-file.md`, file
+   New goal → slug from `${CLAUDE_PLUGIN_ROOT}/scripts/slug.sh "<goal>"`, file
    `.quests/questline-<slug>.md`, `kind: questline`, `status: taken`.
 2. **Scry the goal**, not the first step — read
    `${CLAUDE_PLUGIN_ROOT}/reference/scrying.md` and apply it at the goal's level: what

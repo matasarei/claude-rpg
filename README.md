@@ -286,6 +286,10 @@ plugins/rpg/
                              untrusted-input, security-checklist, code-provenance
   agents/*.md                the three forks, with tool allowlists
   scripts/guard.sh           the PreToolUse guard registered while a quest is on
+  scripts/survey.sh          the survey of the land in one read-only pass, injected into /rpg:summon
+  scripts/quests.sh          the Road: one line per quest file, injected into every skill that needs it
+  scripts/slug.sh            the quest slug from a goal, deterministic
+  scripts/voice.sh           prints the voice for injection
 ```
 
 Conventions: every in-plugin path is `${CLAUDE_PLUGIN_ROOT}/…`; every injected shell command ends

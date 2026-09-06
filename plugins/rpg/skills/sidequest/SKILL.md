@@ -3,7 +3,7 @@ name: sidequest
 description: Things found on the road that are not blocking — a bug beside the one being fixed, a missing check, a small refactor. Records one, lists them, takes one (it becomes a quest), or drops one with the reason kept. The Daemon suggests now, after or never with the road-back test.
 argument-hint: "[<what was found>] [--list] [--take <slug>] [--drop <slug>]"
 disable-model-invocation: true
-allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/voice.sh) Bash(git status *) Bash(git branch *) Bash(git log *) Bash(ls *) Bash(cat *)
+allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/voice.sh) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/quests.sh) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/slug.sh *) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/survey.sh) Bash(git status *) Bash(git branch *) Bash(git log *) Bash(ls *) Bash(cat *)
 hooks:
   PreToolUse:
     - matcher: "Bash"
@@ -25,12 +25,12 @@ The Summoner says: $ARGUMENTS
 
 ## The land, as it stands
 
-- Quests: !`ls -1 .quests 2>/dev/null || echo "no .quests/ — run /rpg:summon first"`
+- Road: !`"${CLAUDE_PLUGIN_ROOT}/scripts/quests.sh" || true`
 - Branch: !`git branch --show-current 2>/dev/null || true`
 
 ## Arguments
 
-- **`<what was found>`** — record it. Slug per `${CLAUDE_PLUGIN_ROOT}/reference/quest-file.md`,
+- **`<what was found>`** — record it. Slug from `${CLAUDE_PLUGIN_ROOT}/scripts/slug.sh "<what>"`,
   file `.quests/side-<slug>.md`, `kind: sidequest`, `status: found`, `found-during: <the active
   quest's slug or null>`, the Summoner's words as Asked, one **Found** line with a tagged fact
   when the code was already looked at, and the **road-back test** answered:
@@ -39,7 +39,8 @@ The Summoner says: $ARGUMENTS
   - **after** otherwise — the default;
   - **never** is the Summoner's word only.
   Say the suggestion in one line and ask once: now or after. Nothing useful back → **after**.
-- **`--list`** — every `side-*.md`: slug, status, decision, found-during, the Found line. Sorted:
+- **`--list`** — the `side-*` lines of the Road table above, nothing opened: slug, status,
+  decision, found-during, last Log line. Sorted:
   `found` first, then `postponed`, then `done`, then `dropped`.
 - **`--take <slug>`** — `decision: now` (or the Summoner's choice), `status: taken`, and invoke
   `rpg:quest` through the Skill tool with `--continue .quests/side-<slug>.md`. An active quest
