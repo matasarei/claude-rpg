@@ -46,8 +46,9 @@ database in the local container, a fixture set, a small read-only script run thr
   answer becomes a read-only script, left untracked, with the exact command written in Findings
   for the Summoner to run.
 - **Anything written here reads and never writes.**
-- **Tag every fact:** `[from the code]`, `[local database]`, `[assumed]`, `[needs a production
-  run: <script>]`. An untagged number is treated as true by everyone downstream.
+- **Tag every fact:** `[from the code]`, `[local database]`, `[from the Summoner]` (what the
+  Summoner said in the chat — about users, the business, what happened), `[assumed]`, `[needs a
+  production run: <script>]`. An untagged number is treated as true by everyone downstream.
 
 No database at all → say so and lean on the code.
 
