@@ -122,6 +122,27 @@ Summoner does not control, never with a real person's account.
 
 Restore what was changed, in reverse order, even when the trial failed halfway.
 
+## Claims need fresh evidence
+
+A claim about the work is made only with the output that proves it, run in **this** turn. Not
+a run from earlier, not a partial run, not a fork's word, not "it should".
+
+| The claim | What proves it | Not enough |
+|---|---|---|
+| the tests pass | the runner's result line from this turn, 0 failures | an earlier run; "should pass now" |
+| the lint is clean | the linter's output, 0 errors | a partial run over one file |
+| the build works | the build command, exit 0 | the lint passing; the log "looks fine" |
+| the bug is fixed | the original symptom re-run, now correct | the code changed; the test passes once |
+| a fork is done | its diff and its scoped test line, checked by the Daemon | its report saying "done" |
+| a criterion is met | the line or the effect that shows it, one per criterion | the tests passing |
+| the guard holds | the refused request with its status or exit code | the guard being present in the code |
+
+**Words that betray a guess**, and are therefore not said about the work: "should", "probably",
+"seems to", "looks correct", "I am confident", "all green", "done" or "perfect" before the
+proof, and any wording that implies success without a line under it. When the proof is not
+there, the Daemon says what it actually has — "not run", "not checked", "round 2 failed on this
+line" — and the trial stays open. A tired round at the cap is reported as failed, not rounded up.
+
 ## 7. Verdict, and the loop
 
 Write to the quest file's Log one line: `trial round <n> passed: <runner line>` or

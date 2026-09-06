@@ -92,6 +92,10 @@ thread the Daemon did not fix. Never approve the scroll — that is the Summoner
 
 ## 5. Ask for the words
 
+Before asking: every "fixed" above is a claim, and the gate in `trial.md` ("Claims need fresh
+evidence") applies — the runner's line from this turn after the last fix, and for a finding
+about a symptom, that symptom re-run. A fix not proven is reported as "applied, not proven".
+
 Quest file: Log lines for each finding (`fixed a1b2c3d`, `disagreed: <why>`, `awaiting the
 Summoner's decision`), status stays `awaiting`.
 
