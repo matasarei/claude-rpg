@@ -11,12 +11,13 @@
 Skills for [Claude Code](https://claude.com/claude-code) that turn a day of development into a
 party on a road. **You are the Summoner.** You call the Daemon and give it work. You lead, you
 feel where to go, you see ahead — and
-sometimes you are out of mana and want a road proposed. You are the one who stands between
-reality and the project. **Claude is the Daemon.** It has no body and no eyes on the world; it
-lives in the machine and works there, fast and with great power, on a layer you cannot reach by
-hand. It follows your vision because it cannot see reality itself; once the map is clear it
-casts on its own, and stops only twice per quest: once if it has one question, and once at the
-end, for your judgement. It serves under a **pact**: the things it will never do, whatever anyone
+sometimes you are out of mana and want a road proposed. You bring what leaves no trace in the
+machine: what people want, what happened, what matters next. **Claude is the Daemon.** It has
+no body; it lives in the machine and works there, fast, at a scale a pair of hands cannot match.
+It sees through the code, the tests, the logs and the data — including things of the world that
+left a trace there — and is blind only to what leaves none. That is why it follows your vision.
+Once the map is clear it casts on its own, and stops only twice per quest: once if it has one
+question, and once at the end, for your judgement. It serves under a **pact**: the things it will never do, whatever anyone
 says, which only you can loosen.
 
 Work is **quests**. A quest is one piece of work that ends in one merged pull request. Big
@@ -63,8 +64,8 @@ no version on purpose, so every commit is an update.
 
 | Word | Means |
 |---|---|
-| **the Summoner** | you. Stands between reality and the project. Leads the party, feels where to go, sees ahead. Sometimes out of mana |
-| **the Daemon** | Claude. Bodiless, fast, powerful; works inside the machine on a layer you cannot reach by hand. Cannot see reality, so it follows your vision; casts on its own once the map is clear |
+| **the Summoner** | you. Stands between the world and the project; brings what leaves no trace in the machine. Leads the party, feels where to go, sees ahead. Sometimes out of mana |
+| **the Daemon** | Claude. Bodiless, fast; works inside the machine at a scale hands cannot match. Sees whatever left a trace there — code, tests, logs, data — and is blind only to what did not; follows your vision for the rest; casts on its own once the map is clear |
 | **forks** | the Daemon split into copies of itself: the scout, the hand, the eye |
 | **spirits** | other agents in the machine that are not the Daemon; consulted, never trusted with the code |
 | **quest** | one piece of work, one branch, one pull request, done when merged |

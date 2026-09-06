@@ -58,7 +58,7 @@ Each phase's procedure is in its own file. Read the file **when the phase begins
    `quest/<slug>`, write `.quests/<slug>.md` with `status: taken`, Log line. Resuming: check out
    the file's `branch`, read its Log, say in one line where it stopped.
 1. **Scry** — read `${CLAUDE_PLUGIN_ROOT}/reference/scrying.md`. `status:
-   scrying`. Classify, find the code, check the facts on local data only, tag every fact,
+   scrying`. Classify, find the code, check the facts on local data only, tag every fact (`[from the code]`, `[from the Summoner]`, `[assumed]`…),
    write Findings and Map into the quest file. **The map stop, one at most:** the map in eight
    lines or fewer; map clear → "I cast now" and go on without waiting; one thing genuinely
    blocks → one question and stop (Next: `--continue`). A pure question → answered, `done`, no

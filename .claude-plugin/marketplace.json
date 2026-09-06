@@ -1,6 +1,6 @@
 {
   "name": "claude-rpg",
-  "description": "Claude RPG: Claude Code skills where you are the Summoner between reality and the project, and Claude is the Daemon that works inside the machine. Work is quests, questlines and sidequests; a quest ends when its pull request is merged.",
+  "description": "Claude RPG: Claude Code skills where you are the Summoner who brings what the machine cannot show, and Claude is the Daemon that works inside it. Work is quests, questlines and sidequests; a quest ends when its pull request is merged.",
   "owner": {
     "name": "Yevhen Matasar",
     "url": "https://github.com/matasarei"
