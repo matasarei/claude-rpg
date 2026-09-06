@@ -126,6 +126,11 @@ all, so the Summoner reviews the decisions with the code and can undo one cheapl
 3. [ ] `.quests/drop-xlsx-grouping.md` — planned
 ```
 
+A questline ends with a **converge**: when every quest is ticked, the delivered state is checked
+against the goal's criteria, and each gap becomes a new quest appended to the Road. The
+questline is `done` only when a converge finds nothing; its Log records each converge and what
+it found.
+
 ## States, and what moves them
 
 | State | Set when | Moves on when |
