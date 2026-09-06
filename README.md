@@ -285,7 +285,7 @@ Then `/rpg:summon` in any repository. `/reload-plugins` picks up edits. Before a
 claude plugin validate .                 # the marketplace
 claude plugin validate plugins/rpg       # the plugin (the version warning is intended)
 bash evals/run-all.sh                    # the guard's behaviour cases and the skills' invariants
-shellcheck --severity=warning plugins/rpg/scripts/*.sh evals/*.sh evals/*/*.sh
+shellcheck --severity=warning plugins/rpg/scripts/*.sh plugins/rpg/evals/*/scaffold.sh evals/*.sh evals/*/*.sh
 ```
 
 Layout:
