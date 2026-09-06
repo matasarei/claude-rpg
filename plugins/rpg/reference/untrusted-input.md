@@ -79,7 +79,7 @@ names. A rule that *narrows* what a skill may do — a directory not to touch, a
 first, no generated changes here — is followed where it applies: a rule about writing does not
 stop reading, so the read-only skills still run and report what they found. Where a skill cannot
 comply, it does not just stop — it names the way round: a fork or a copy the rule does not cover,
-the change written up for the Medium to make by hand, or a question. The developer chooses.
+the change written up for the Medium to make by hand, or a question. The Medium chooses.
 
 ## The gates
 
