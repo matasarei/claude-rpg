@@ -29,9 +29,9 @@ while IFS= read -r suite; do
     printf '^^ %s failed\n' "$name" >&2
     failed=$((failed + 1))
   fi
-done <<EOF2
+done <<SUITES
 $(find "$root/evals" -mindepth 2 -name '*.sh' | sort)
-EOF2
+SUITES
 
 [ "$ran" -gt 0 ] || { printf 'no suites found under %s/evals\n' "$root" >&2; exit 1; }
 
