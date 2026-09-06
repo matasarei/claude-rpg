@@ -2,7 +2,7 @@
 
 The third phase. Tests passing and a change working are different claims; the trial makes both,
 separately, and says which one it can back. A failed trial sends the quest back to cast. Three
-rounds at most; then the Archmage stops and asks.
+rounds at most; then the Daemon stops and asks.
 
 Everything runs the way `exec.md` says: through `exec.prefix`, wrapped in `timeoutTool`. A hang
 is a failure. On `exec.kind: host`, every result line says so.
@@ -118,7 +118,7 @@ both times; `'`, `"`, `<b>x</b>` → stored literally, shown as `&lt;b&gt;`; `..
 `limit=100000000` → capped; any error body → generic, no trace. Each row: passed with the code
 that proved it, failed as a finding, or skipped with a category (`SETUP`, `MISSING`, `HOSTED`,
 `EXTERNAL`, `DATA`, `PRE-EXISTING`) and one line on the way out. Never against a host the
-Medium does not control, never with a real person's account.
+Summoner does not control, never with a real person's account.
 
 Restore what was changed, in reverse order, even when the trial failed halfway.
 
@@ -132,9 +132,9 @@ Write to the quest file's Log one line: `trial round <n> passed: <runner line>` 
 - **Failed, or a BLOCKER or WARNING** → `status: casting`, back to `cast.md` with the findings
   as steps. Fix the smallest thing that resolves each, one commit each. This is round `n+1`.
 - **Round 3 failed** → stop. Under the banner, say what still fails, quote it, say what the
-  Archmage thinks it is and whether that is a **proven cause** or a **hypothesis**. The Next block
+  Daemon thinks it is and whether that is a **proven cause** or a **hypothesis**. The Next block
   offers `/rpg:evocation "<what fails>"` and `/rpg:quest --continue .quests/<slug>.md`. A fourth
-  attempt on a tired premise rarely lands, and whether to keep going is the Medium's call.
+  attempt on a tired premise rarely lands, and whether to keep going is the Summoner's call.
 
 In the chat, when it passed, one block: the runner's line, what was driven and what it did, the
 guard rows that were checked, what was judged from the diff alone, what was skipped and why. A

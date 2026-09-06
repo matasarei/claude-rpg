@@ -9,7 +9,7 @@ this repository* is supposed to do each of these; this file says *what to check*
 
 ## Scope and wording
 
-This is a review of the Medium's own code, in their own repository, run locally on test
+This is a review of the Summoner's own code, in their own repository, run locally on test
 data. Every framework's own security documentation asks exactly this of its reviewers, and a
 review that skips it is incomplete in the same way a review that skips the tests is.
 
@@ -24,7 +24,7 @@ review that skips it is incomplete in the same way a review that skips the tests
   state-changing request with its token left out. If such an input reaches SQL, a shell, the
   filesystem, the page, or another user's data, the finding is made. Building anything that
   does more than demonstrate is outside the job.
-- **Local only, own code only.** Never probe a host the Medium does not control, never a
+- **Local only, own code only.** Never probe a host the Summoner does not control, never a
   production system, never with a real person's account or data. Verification uses the
   project's test accounts — two throwaway users, one with the permission and one without — and
   restores whatever it changed.
@@ -180,7 +180,7 @@ commit or pull request body settles it, and an idiom everyone writes is nothing.
 
 ### The same sweep over a whole tree
 
-When there is no diff — the Medium asks for a look at the whole land — define the source over
+When there is no diff — the Summoner asks for a look at the whole land — define the source over
 every tracked file instead and run the same groups; a hit then carries `path:line` directly, so there is nothing to map back:
 
 ```bash

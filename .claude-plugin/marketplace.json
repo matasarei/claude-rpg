@@ -1,6 +1,6 @@
 {
   "name": "claude-rpg",
-  "description": "Claude RPG: Claude Code skills where Claude is the Archmage of your party and you are the Medium. Work is quests, questlines and sidequests; a quest ends when its pull request is merged.",
+  "description": "Claude RPG: Claude Code skills where you are the Summoner between reality and the project, and Claude is the Daemon that works inside the machine. Work is quests, questlines and sidequests; a quest ends when its pull request is merged.",
   "owner": {
     "name": "Yevhen Matasar",
     "url": "https://github.com/matasarei"
@@ -13,7 +13,7 @@
       "name": "rpg",
       "displayName": "Claude RPG",
       "source": "./plugins/rpg",
-      "description": "Play development as a party: /rpg:party, /rpg:quest, /rpg:questline, /rpg:sidequest, /rpg:journal, /rpg:evocation. One quest = investigate, cast, trial, scroll (PR), the Medium's judgement, merge.",
+      "description": "Play development as a party: /rpg:summon, /rpg:quest, /rpg:questline, /rpg:sidequest, /rpg:journal, /rpg:evocation. One quest = investigate, cast, trial, scroll (PR), the Summoner's judgement, merge.",
       "author": { "name": "Yevhen Matasar", "url": "https://github.com/matasarei" },
       "license": "MIT",
       "keywords": ["rpg", "quest", "workflow", "pull-request", "subagents", "game"],

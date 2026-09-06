@@ -6,18 +6,18 @@ things stand. A session that ends mid-quest resumes from it with `/rpg:quest --c
 
 ## Where, and why it is ignored
 
-`.quests/` is created by `/rpg:party` and hidden through **git's global excludes file**
+`.quests/` is created by `/rpg:summon` and hidden through **git's global excludes file**
 (`git config --global core.excludesFile`, default `~/.config/git/ignore`) — never through the
 project's own `.gitignore`, which the party does not touch. It is ignored on purpose:
 
-- it describes one Medium's road, not the project;
+- it describes one Summoner's road, not the project;
 - an ignored directory survives branch switches, so a questline that spans five branches keeps
   its files while the tree moves under it;
 - nothing in it is a deliverable — the pull request is.
 
 The project itself carries no trace of the game: no ignore line, no `CLAUDE.md`, no `AGENTS.md`.
 A team that wants to share questlines can still commit the directory by hand; that is the
-Medium's call, and `/rpg:party` says which it found.
+Summoner's call, and `/rpg:summon` says which it found.
 
 ## Names
 
@@ -48,12 +48,12 @@ questline: <questline slug, or null>
 branch: quest/<slug>, or null
 pr: <url, or null>
 found-during: <quest slug, sidequests only, or null>
-decision: now | after | never | null        # sidequests: the Medium's word
+decision: now | after | never | null        # sidequests: the Summoner's word
 merged: <sha, or null>
 ---
 # <Title — the goal in one line>
 
-**Asked:** <the Medium's words, verbatim>
+**Asked:** <the Summoner's words, verbatim>
 
 ## Findings
 - <one fact per line, each with its tag: [from the code] [local database] [assumed] [needs a production run: <script>]>
@@ -74,7 +74,7 @@ Steps:
 - 2026-09-06 14:40 trial round 1 failed: `Failed asserting that 2 matches expected 3.`
 - 2026-09-06 14:52 trial passed: `OK (45 tests, 123 assertions)`
 - 2026-09-06 14:55 scroll — https://github.com/org/repo/pull/118
-- 2026-09-06 16:20 done — merged 9f8e7d6 by the Medium's word
+- 2026-09-06 16:20 done — merged 9f8e7d6 by the Summoner's word
 ```
 
 Frontmatter first, on line 1. Every field present, `null` when it does not apply. The Log is
@@ -99,10 +99,10 @@ append-only, one line per event, oldest first; a trial line quotes the runner's 
 | `casting` | steps are landing, one commit each | all steps ticked → `trial` |
 | `trial` | lint, tests, severity pass, runtime drive | passed → `scroll` (or `done` with `--local`); failed → back to `casting`, round counted in the Log; three rounds failed → stays `trial`, stop and ask |
 | `scroll` | the pull request is being written | opened → `awaiting` |
-| `awaiting` | the Medium is looking | comments addressed → stays `awaiting`; the Medium's words → `done` |
+| `awaiting` | the Summoner is looking | comments addressed → stays `awaiting`; the Summoner's words → `done` |
 | `done` | merged (sha in `merged`), or answered, or `--local` finished | never |
-| `postponed` | a sidequest with the word "after" and no questline, or a quest the Medium paused | `--take` or `--continue` → `taken` |
-| `dropped` | the Medium said "never", or the road was wrong; the reason is the last Log line | never |
+| `postponed` | a sidequest with the word "after" and no questline, or a quest the Summoner paused | `--take` or `--continue` → `taken` |
+| `dropped` | the Summoner said "never", or the road was wrong; the reason is the last Log line | never |
 
 `/rpg:journal` reads only the frontmatter and the last Log line of each file; keep both true.
 
@@ -125,9 +125,9 @@ decision: null
 **Road-back test:** one file, six lines, same area — **now** is reasonable; **after** is safe.
 ```
 
-The three words and when the Archmage suggests each:
+The three words and when the Daemon suggests each:
 
 - **now** — it blocks the trial; or the current quest touches the same files, so later means a
   conflict and a long road back; or it is one file and a few lines;
 - **after** — everything else. The default;
-- **never** — the Medium's word only. The file stays, `dropped`, with the reason.
+- **never** — the Summoner's word only. The file stays, `dropped`, with the reason.

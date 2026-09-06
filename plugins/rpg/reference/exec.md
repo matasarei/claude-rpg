@@ -33,7 +33,7 @@ say the hang cannot be bounded — never drop the bound silently.
 ## Worktrees
 
 A compose service mounts the **primary** checkout. Run through it from a worktree — one added
-to look at a pull request's tree apart from the Medium's checkout — and it exercises the wrong tree
+to look at a pull request's tree apart from the Summoner's checkout — and it exercises the wrong tree
 while printing something that looks like a result. Two honest routes: with `exec.kind: image`,
 mount the worktree instead (`-v "<worktree>":/app`); with `compose`, check the commit out in the
 primary checkout, note the branch that was there, and restore it before finishing, whatever
@@ -42,6 +42,6 @@ of this.
 
 ## Someone else's tree
 
-The judgement phase of a quest may run a test or lint command over commits the Archmage did
+The judgement phase of a quest may run a test or lint command over commits the Daemon did
 not write — a reviewer's suggestion pushed onto the branch, say. In a container the blast radius is the container; on `exec.kind: host` it is the
-Medium's machine and credentials — say so and ask first (`${CLAUDE_PLUGIN_ROOT}/reference/untrusted-input.md`).
+Summoner's machine and credentials — say so and ask first (`${CLAUDE_PLUGIN_ROOT}/reference/untrusted-input.md`).

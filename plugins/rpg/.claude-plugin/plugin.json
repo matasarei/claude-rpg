@@ -1,6 +1,6 @@
 {
   "name": "rpg",
-  "description": "Claude RPG: Claude is the Archmage, you are the Medium. /rpg:party (camp in a repository), /rpg:quest (investigate, cast, trial, scroll, the Medium's judgement, merge), /rpg:questline (a road of quests to one goal), /rpg:sidequest (things found on the road), /rpg:journal (where are we), /rpg:evocation (roads ahead when you are out of mana). Mirrors (subagents) help when there is too much for one pair of hands.",
+  "description": "Claude RPG: you are the Summoner, Claude is the Daemon you call, bound by a pact. /rpg:summon (call the Daemon into a repository), /rpg:quest (investigate, cast, trial, scroll, the Summoner's judgement, merge), /rpg:questline (a road of quests to one goal), /rpg:sidequest (things found on the road), /rpg:journal (where are we), /rpg:evocation (roads ahead when you are out of mana). The Daemon forks (subagents that are copies of itself) when there is too much for one process, and may ask spirits (other agents) but never trusts them with the code.",
   "author": { "name": "Yevhen Matasar", "url": "https://github.com/matasarei" },
   "license": "MIT",
   "repository": "https://github.com/matasarei/claude-rpg",
