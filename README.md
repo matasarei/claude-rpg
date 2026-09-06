@@ -192,6 +192,9 @@ While a quest is on, a hook is the pact's guard: it refuses the git commands abo
 
 ## Files it writes
 
+- `.quests/lore.md` — what the road taught in this repository, one dated line per quest that
+  learned something: a trap, an unwritten convention, a command that only works one way. Read
+  first at every scrying. Yours alone: never shared, never written into the project.
 - `.quests/` at the repository root — one markdown file per quest, sidequest and questline:
   what was asked, what was found (tagged), the map with ticked steps, and a dated log. Ignored
   by git on purpose: it is your road, not the project's history, and it survives branch

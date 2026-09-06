@@ -63,7 +63,8 @@ re-check what it already says.
    game's words to the project.
 5. **The road so far.** The Road table above is the journal — one line per quest with its
    state and last Log line (`${CLAUDE_PLUGIN_ROOT}/reference/quest-file.md`); do not open the
-   quest files. `gh pr list --author @me --state open` for scrolls awaiting. Note `gh` missing or signed out — quests can still be cast, scrolls will be
+   quest files. The survey's `lore` line says how many learnings the camp holds; say it in the
+   greeting when it is not zero. `gh pr list --author @me --state open` for scrolls awaiting. Note `gh` missing or signed out — quests can still be cast, scrolls will be
    handed over as a compare URL.
 6. **Greet.** Under no banner (no quest is active yet), in voice, at most ten lines: what this
    place is (one line from the standards doc or the manifest), how it is tested (the profile's

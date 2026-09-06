@@ -130,6 +130,10 @@ The merge is refused — checks pending, a required review, conflicts → say wh
 verbatim, and stop. Never `--admin`, never a merge the repository's rules refuse.
 
 Quest file: `status: done`, `merged: <sha>`, Log line `done — merged <sha> by the Summoner's word`.
+
+**The lore.** One line to `.quests/lore.md`, dated and prefixed with the quest slug, if — and
+only if — this quest taught something the next one would otherwise rediscover
+(`quest-file.md`, "Lore"). Nothing learned → nothing written; the lore is not a diary.
 Questline file, when there is one: tick the quest on the Road.
 
 ## 7. The end of the quest

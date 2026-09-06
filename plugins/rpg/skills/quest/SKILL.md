@@ -28,6 +28,7 @@ The Summoner says: $ARGUMENTS
 - Branch: !`git branch --show-current 2>/dev/null || true`
 - Tree: !`git status --short 2>/dev/null | head -20 || true`
 - Road: !`"${CLAUDE_PLUGIN_ROOT}/scripts/quests.sh" || true`
+- Lore: !`cat .quests/lore.md 2>/dev/null || echo "no lore yet"`
 - Profile: !`cat .claude/repo-profile.json 2>/dev/null || echo "no profile — run /rpg:summon first"`
 
 ## Arguments

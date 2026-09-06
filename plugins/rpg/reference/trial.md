@@ -149,7 +149,8 @@ Write to the quest file's Log one line: `trial round <n> passed: <runner line>` 
 `trial round <n> failed: <the first failing line or the blocker>`.
 
 - **Passed, no BLOCKER, no WARNING** → `status: scroll` (or `done` with `--local`, and the chat
-  says the trial passed and nothing was pushed). Nits go into the scroll's Notes. A WARNING
+  says the trial passed and nothing was pushed; a `--local` done writes its lore line as the
+  judgement would, `quest-file.md` "Lore"). Nits go into the scroll's Notes. A WARNING
   left standing on purpose is a ruling in the Log, with the why and the cost if wrong.
 - **Failed, or a BLOCKER or WARNING** → `status: casting`, back to `cast.md` with the findings
   as steps. Fix the smallest thing that resolves each, one commit each. This is round `n+1`.

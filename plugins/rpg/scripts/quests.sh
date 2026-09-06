@@ -7,6 +7,7 @@ dir="${1:-.quests}"
 found=0
 for f in "$dir"/*.md; do
   [ -e "$f" ] || continue
+  case "$f" in */lore.md) continue ;; esac
   found=1
   awk -v file="$f" '
     BEGIN { fm=0; kind="?"; status="?"; ql="null"; br="null"; pr="null"; dec="null"; found="null"; title=""; last=""; ruling="" }
