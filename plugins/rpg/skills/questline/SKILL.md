@@ -58,14 +58,22 @@ with "no such questline file"; otherwise a goal. Nothing → ask what the goal i
 5. **Start the first quest** by invoking `rpg:quest` through the Skill tool with
    `--continue .quests/<first>.md`. Do not describe the loop here; it lives there.
 6. **`--continue` after a merge.** Read the Road; the first unticked quest whose predecessor is
-   `done` is next. Its predecessor not merged → say so, Next is that quest's `--continue`. All
-   ticked → the questline is `done`; say it in three lines.
+   `done` is next. Its predecessor not merged → say so, Next is that quest's `--continue`.
+7. **Converge, when every quest on the Road is ticked.** Before the questline is called done,
+   check the delivered state against the goal, on the base branch after the last merge: the
+   questline's Findings and its criteria, one row each — met (the line or the effect that shows
+   it, under the gate in `${CLAUDE_PLUGIN_ROOT}/reference/trial.md`), not met, or not checkable
+   here. Every gap becomes a new quest file (`status: planned`, `questline: <slug>`) appended to
+   the Road, and the questline stays open. No gap → `status: done`, the road's lore line, and
+   three lines in the chat. A converge that finds gaps twice in a row is a sign the goal was
+   cut wrong: say so, and offer to re-cut instead of appending a third time.
 
 ## Next
 
 - after the map stop → `/rpg:quest --continue .quests/<first>.md` (already started by step 5);
   `/rpg:journal`
 - after a merge → `/rpg:questline --continue .quests/questline-<slug>.md`
+- converge found gaps → `/rpg:quest --continue .quests/<first new quest>.md`
 - questline done → `/rpg:sidequest --list` when sidequests are open; else `/rpg:evocation`
 
 ## Rules — the pact
