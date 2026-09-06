@@ -76,7 +76,7 @@ no version on purpose, so every commit is an update.
 
 | Command | Does | Changes files? |
 |---|---|---|
-| `/rpg:party [--reprofile]` | joins the party in this repository: surveys the land (how it is tested, run, where commands execute), makes camp (`.quests/`), checks `gh`, reads the laws of the land (`CLAUDE.md` and friends), greets you with what is open | `.quests/`, `.gitignore`, the profile |
+| `/rpg:party [--reprofile]` | joins the party in this repository: surveys the land (how it is tested, run, where commands execute), makes camp (`.quests/`), checks `gh`, reads the laws of the land (`CLAUDE.md` and friends, never writes them), greets you with what is open | `.quests/` and the profile, both hidden through git's global excludes; the project's own files stay untouched |
 | `/rpg:quest <goal> \| <file> [--continue] [--local] [--no-mirrors]` | one quest, from the first look to the merge — see below | yes: a branch, commits, a pull request |
 | `/rpg:questline <goal> \| <file> [--continue]` | cuts a big goal into a road of quests that each merge alone, asks you to bless the road, starts the first; `--continue` after a merge takes the next | quest files, then via quests |
 | `/rpg:sidequest [<what>] [--list] [--take <slug>] [--drop <slug>]` | records what was found, lists it, takes one as a quest, or drops one with the reason kept | sidequest files |
@@ -172,17 +172,20 @@ Only you, typing here, can lift one of these — and only for the work, never fo
 - `.quests/` at the repository root — one markdown file per quest, sidequest and questline:
   what was asked, what was found (tagged), the plan with ticked steps, and a dated log. Ignored
   by git on purpose: it is your road, not the project's history, and it survives branch
-  switches. Commit it if your team wants to share questlines.
+  switches. Commit it by hand if your team wants to share questlines.
 - `.claude/repo-profile.json` — the survey of the land: base branch, where commands run
   (container or host), lint, test and build commands, the runtime surface. Detected once,
   cached, ignored. The Archmage prints the commands when it first writes them. Claude Code
   protects `.claude/`, so this one write may ask your permission once; refused, the Archmage keeps
   the survey for the session and surveys again next time.
-- `.gitignore` — the two entries above, added if missing.
-- `CLAUDE.md` — only when the repository has no standards doc at all, only on your word, and
-  only a commands table plus a stub.
+- **Git's global excludes file** (`git config --global core.excludesFile`, by default
+  `~/.config/git/ignore`) — the two paths above are added there, so they are hidden in every
+  repository without touching any project's `.gitignore`.
 
-Everything else lands in commits on a `quest/<slug>` branch and in the pull request.
+**The project carries no trace of the game.** The party never writes or edits `CLAUDE.md`,
+`AGENTS.md` or `.gitignore`, and never commits anything by itself. What lands in history is only
+what a quest builds, on a `quest/<slug>` branch, through its pull request. Temporary files —
+quests, the survey, notes the Archmage keeps — live inside the project but outside its history.
 
 ## A sample session
 
