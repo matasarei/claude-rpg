@@ -4,6 +4,23 @@ Every quest, sidequest and questline is one markdown file in `.quests/` at the r
 The file is the memory: what was asked, what was found, what is planned, what landed, and where
 things stand. A session that ends mid-quest resumes from it with `/rpg:quest --continue`.
 
+## Lore — what the road taught
+
+`.quests/lore.md` is the camp's memory: one dated line per learning, appended when a quest is
+done — a trap in this repository, a convention the standards doc does not state, a command that
+only works one way, a place where the tests lie. At most one line per quest, and only for what
+the next quest would otherwise rediscover; a fact the code states plainly is not lore.
+
+```
+- 2026-09-06 export-csv: `composer test` needs the container up first; the host has no PHP
+- 2026-09-07 null-department: fixtures never produce a department without a head — make one by hand
+```
+
+Scrying reads the lore before anything else; the summoning reports how many lines it holds.
+The lore is one Summoner's memory of one repository: never shared, never copied into the
+project, never quoted in a scroll (`voice.md`, "Where the game stays"). It is not a quest file
+and the Road does not list it.
+
 ## Where, and why it is ignored
 
 `.quests/` is created by `/rpg:summon` and hidden through **git's global excludes file**

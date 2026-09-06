@@ -30,6 +30,7 @@ say docker "$( command -v docker >/dev/null 2>&1 && (docker info --format '{{.Op
 say timeout-tool "$( (timeout 1 true >/dev/null 2>&1 && echo timeout) || (gtimeout 1 true >/dev/null 2>&1 && echo gtimeout) || echo none )"
 say host-runtimes "$(for c in php python3 node ruby go; do command -v $c >/dev/null 2>&1 && printf '%s=%s ' "$c" "$($c --version 2>&1 | head -1 | grep -oE '[0-9]+\.[0-9]+(\.[0-9]+)?' | head -1)"; done)"
 say gh "$(gh auth status 2>&1 | grep -E 'Logged in|not logged' | head -1 | sed 's/^\s*//' || echo 'gh not installed')"
-say quests "$( [ -d .quests ] && ls -1 .quests | wc -l | tr -d ' ' || echo 'no .quests/' )"
+say quests "$( [ -d .quests ] && ls -1 .quests | grep -v '^lore.md$' | wc -l | tr -d ' ' || echo 'no .quests/' )"
+say lore "$( [ -f .quests/lore.md ] && wc -l < .quests/lore.md | tr -d ' ' || echo 0 ) learnings"
 say ignored "$(for p in .quests/ .claude/repo-profile.json; do printf '%s=%s ' "$p" "$(git check-ignore -q "$p" 2>/dev/null && echo yes || echo no)"; done)"
 say global-excludes "$(git config --global core.excludesFile 2>/dev/null || echo 'unset — git uses ~/.config/git/ignore')"

@@ -22,6 +22,10 @@ ask before the map stop.
 
 ## 2. Find the code
 
+**The lore first.** `.quests/lore.md`, injected above the skill when it exists, is what earlier
+quests learned here; a line that touches this goal's area is a Finding, tagged `[from the lore]`,
+and is checked against the code like any other before the Map relies on it.
+
 Take two to four distinctive terms from the goal and search for them. Read what they hit: the
 entry points, the classes involved, the tests that already cover the area. Read the standards
 doc named in the profile for the conventions the map must follow.

@@ -48,7 +48,8 @@ that says so. A claim without the line that proves it, run in this turn, is not 
 
 ## Where the game stays
 
-The game is for the Summoner. It lives in the chat and in `.quests/`, and nowhere else.
+The game is for the Summoner. It lives in the chat and in `.quests/` — the quests, the road, the
+lore the camp remembers — and nowhere else.
 Everything the party makes for other people is serious work, made as it should be: code,
 comments, tests, documentation, the scroll's title and body, replies to reviewers, anything that
 lands in the repository or on GitHub. No role names, no metaphors, no emoji, no "the Daemon" in
