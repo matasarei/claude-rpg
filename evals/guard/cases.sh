@@ -74,6 +74,9 @@ cases() {
 0|git commit -m \"never pass --no-verify\"
 0|git commit -m \"push --force is banned here\"
 0|git commit -m 'do not --amend'
+0|git commit -m \"it's done\" && echo \"that's it\"
+# refused — apostrophes inside double quotes do not hide a flag between them
+2|git commit -m \"it's\" && git push --force && echo \"that's\"
 # refused — the flags outside the quotes are still seen
 2|git commit -m \"msg\" && git push --force
 # allowed — nothing to do with git, or nothing to read
@@ -95,12 +98,52 @@ run_cwd() { # run_cwd <expected> <command>
   fi
 }
 
+# A push with no ref, or HEAD, is a push of the checked-out branch: refused on
+# the base branch, allowed on a quest branch. The jq path learns the checkout
+# from the payload's cwd; the jq-less path from the hook's own cwd.
+checkout() { # checkout <dir> <branch>
+  git init -q -b "$2" "$1" 2>/dev/null || { git init -q "$1" && git -C "$1" checkout -q -b "$2"; }
+  git -C "$1" -c user.name=t -c user.email=t@t commit -q --allow-empty -m init
+}
+onmain="$work/onmain"; checkout "$onmain" main
+onquest="$work/onquest"; checkout "$onquest" quest/x
+run_in() { # run_in <dir> <label> <expected> <command> [PATH]
+  local dir="$1" label="$2" want="$3" cmd="$4" path="${5-}" got
+  if [ -n "$path" ]; then
+    ( cd "$dir" && printf '{"tool_input":{"command":"%s"}}' "$cmd" | PATH="$path" /bin/bash "$guard" ) >/dev/null 2>&1
+  else
+    ( cd "$work" && printf '{"cwd":"%s","tool_input":{"command":"%s"}}' "$dir" "$cmd" | "$guard" ) >/dev/null 2>&1
+  fi
+  got=$?
+  if [ "$got" != "$want" ]; then
+    printf 'FAIL  %-8s want=%s got=%s  [%s] %s\n' "$label" "$want" "$got" "$(basename "$dir")" "$cmd"
+    fails=$((fails + 1))
+  fi
+}
+checkout_cases() {
+  local label="$1" path="${2-}"
+  run_in "$onmain" "$label" 2 'git push' "$path"
+  run_in "$onmain" "$label" 2 'git push origin' "$path"
+  run_in "$onmain" "$label" 2 'git push -u origin HEAD' "$path"
+  run_in "$onmain" "$label" 2 'git push --all' "$path"
+  run_in "$onmain" "$label" 0 'git push --tags' "$path"
+  run_in "$onmain" "$label" 0 'git push origin quest/x' "$path"
+  run_in "$onquest" "$label" 0 'git push' "$path"
+  run_in "$onquest" "$label" 0 'git push -u origin HEAD' "$path"
+}
+
 cases 'jq'
 if command -v jq >/dev/null 2>&1; then
   run_cwd 2 'git push origin release.1'
   run_cwd 0 'git push origin release01'
+  checkout_cases 'jq'
 fi
-[ -x "$nojq/sed" ] && cases 'no-jq' "$nojq"
+if [ -x "$nojq/sed" ]; then
+  cases 'no-jq' "$nojq"
+  # git itself is needed for the checkout cases on this path.
+  for c in /bin/git /usr/bin/git /usr/local/bin/git /opt/homebrew/bin/git; do [ -x "$c" ] && ln -sf "$c" "$nojq/git" && break; done
+  [ -x "$nojq/git" ] && checkout_cases 'no-jq' "$nojq"
+fi
 
 rm -rf "$work"
 if [ "$fails" -eq 0 ]; then

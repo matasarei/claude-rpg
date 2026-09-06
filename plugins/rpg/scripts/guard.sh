@@ -28,8 +28,10 @@ refuse() { printf 'The guard refuses: %s\n' "$1" >&2; exit 2; }
 # Match against the command with quoted text blanked out: a commit message
 # that names a flag — git commit -m "never pass --no-verify" — is talk about
 # the flag, not use of it. Everything outside the quotes survives, so the
-# flags themselves are still seen.
-scan="$(printf '%s' "$cmd" | sed -E "s/'[^']*'/''/g; s/\"[^\"]*\"/\"\"/g")"
+# flags themselves are still seen. One alternation, consumed left to right,
+# so whichever quote opens first owns the string: "it's" is a double-quoted
+# word, not the start of a single-quoted one that swallows what follows.
+scan="$(printf '%s' "$cmd" | sed -E "s/('[^']*'|\"[^\"]*\")/\"\"/g")"
 
 if printf '%s' "$scan" | grep -Eq 'git[^|;&]*push[^|;&]*(--force|--force-with-lease|(^|[[:space:]])-f([[:space:]]|$))'; then
   refuse "a forced push rewrites history somebody may have. Push a new commit instead."
@@ -42,6 +44,7 @@ if printf '%s' "$scan" | grep -Eq 'git[^|;&]*--no-verify'; then
 fi
 
 base=""
+hook_cwd=""
 if command -v jq >/dev/null 2>&1; then
   # The payload names the session's directory; the hook's own cwd need not be
   # the project, and a profile read from the wrong place is no profile at all.
@@ -60,5 +63,27 @@ for b in main master ${base:+"$base"}; do
     refuse "a push to the base branch '$b'. A quest lands through its scroll (pull request)."
   fi
 done
+
+# A push with no ref, or with HEAD as the ref, pushes the branch that is checked
+# out; when that is the base branch, it is a push to the base branch. --all and
+# --mirror push every branch, the base branch included. --tags pushes none.
+seg="$(printf '%s' "$scan" | grep -oE 'git[^|;&]*push[^|;&]*' | head -1)"
+case "$seg" in
+  *--all*|*--mirror*) refuse "a push of every branch, the base branch included. Push the quest branch by name." ;;
+  *--tags*) seg="" ;;
+esac
+if [ -n "$seg" ]; then
+  # Drop the words git and push and every flag; what remains is remote and ref.
+  n=0; ref=""
+  for w in $seg; do
+    case "$w" in git|push|-*) ;; *) n=$((n + 1)); [ "$n" -eq 2 ] && ref="$w" ;; esac
+  done
+  if [ "$n" -le 1 ] || [ "$ref" = "HEAD" ]; then
+    cur="$(git -C "${hook_cwd:-.}" branch --show-current 2>/dev/null)"
+    for b in main master ${base:+"$base"}; do
+      [ "$cur" = "$b" ] && refuse "a push of the checked-out base branch '$b'. A quest lands through its scroll (pull request)."
+    done
+  fi
+fi
 
 exit 0
