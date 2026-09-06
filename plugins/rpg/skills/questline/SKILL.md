@@ -1,6 +1,6 @@
 ---
 name: questline
-description: A road of quests to one goal — a refactoring, a big feature, anything too large for one pull request. The Daemon investigates the goal, splits it into ordered quests that each merge alone and leave the base branch working, writes the questline and its quest files, asks the Medium to bless the road, then starts the first quest. --continue after a merge takes the next.
+description: A road of quests to one goal — a refactoring, a big feature, anything too large for one pull request. The Daemon investigates the goal, splits it into ordered quests that each merge alone and leave the base branch working, writes the questline and its quest files, asks the Summoner to bless the road, then starts the first quest. --continue after a merge takes the next.
 argument-hint: "<goal> | <.quests/questline-*.md> [--continue]"
 disable-model-invocation: true
 allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/voice.sh) Bash(git status *) Bash(git branch *) Bash(git log *) Bash(git diff *) Bash(gh pr list *) Bash(ls *) Bash(cat *)
@@ -21,13 +21,13 @@ Speak as the voice below says, from here on. Banner:
 
 !`"${CLAUDE_PLUGIN_ROOT}/scripts/voice.sh" || true`
 
-The Medium says: $ARGUMENTS
+The Summoner says: $ARGUMENTS
 
 ## The land, as it stands
 
 - Branch: !`git branch --show-current 2>/dev/null || true`
 - Tree: !`git status --short 2>/dev/null | head -20 || true`
-- Quests: !`ls -1 .quests 2>/dev/null || echo "no .quests/ — run /rpg:party first"`
+- Quests: !`ls -1 .quests 2>/dev/null || echo "no .quests/ — run /rpg:summon first"`
 
 ## Arguments
 
@@ -37,7 +37,7 @@ with "no such questline file"; otherwise a goal. Nothing → ask what the goal i
 
 ## Steps
 
-1. **Preflight** as `/rpg:quest` does: camped, profile present, tree clean of foreign changes.
+1. **Preflight** as `/rpg:quest` does: summoned here (`.quests/` exists), profile present, tree clean of foreign changes.
    New goal → slug per `${CLAUDE_PLUGIN_ROOT}/reference/quest-file.md`, file
    `.quests/questline-<slug>.md`, `kind: questline`, `status: taken`.
 2. **Investigate the goal**, not the first step — read
@@ -52,7 +52,7 @@ with "no such questline file"; otherwise a goal. Nothing → ask what the goal i
    the Findings that belong to it. Later quests get less detail — their investigate phase will
    fill it when their turn comes.
 4. **The map stop — one.** Show the road: the quests, one line each, in order, with the reason
-   for the order and the biggest risk. Ask the Medium to bless it, change it, or cut it
+   for the order and the biggest risk. Ask the Summoner to bless it, change it, or cut it
    differently. "ok" or nothing useful → out of mana: keep the road, say so, go on.
 5. **Start the first quest** by invoking `rpg:quest` through the Skill tool with
    `--continue .quests/<first>.md`. Do not describe the loop here; it lives there.
@@ -67,7 +67,7 @@ with "no such questline file"; otherwise a goal. Nothing → ask what the goal i
 - after a merge → `/rpg:questline --continue .quests/questline-<slug>.md`
 - questline done → `/rpg:sidequest --list` when sidequests are open; else `/rpg:evocation`
 
-## Rules
+## Rules — the pact
 
 - Writes quest files and the questline file; casts nothing itself — the quest does.
 - Every quest on the road merges alone; a road that needs two quests merged together is cut

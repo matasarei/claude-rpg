@@ -44,7 +44,7 @@ database in the local container, a fixture set, a small read-only script run thr
 
 - **Local data only.** Never point anything at a live system. A question only production can
   answer becomes a read-only script, left untracked, with the exact command written in Findings
-  for the Medium to run.
+  for the Summoner to run.
 - **Anything written here reads and never writes.**
 - **Tag every fact:** `[from the code]`, `[local database]`, `[assumed]`, `[needs a production
   run: <script>]`. An untagged number is treated as true by everyone downstream.
@@ -58,7 +58,7 @@ that fits this codebase and say why in one line.
 
 For a genuinely open design question — several defensible approaches, or a change that is hard
 to reverse — two or three options in a short table with their trade-offs, a recommendation, and
-what would change it. That table goes to the Medium at the plan stop; it is the one case where
+what would change it. That table goes to the Summoner at the plan stop; it is the one case where
 the stop is a question rather than a notice.
 
 **Breaking a tie.** Where the standards doc states design priorities, apply them. Where it is
@@ -79,7 +79,7 @@ in the plan, not a reason to invent one. For `cli` or `library` the question doe
 - <fact> [tag]
 
 ## Plan
-Test order: build-then-cover | test-first — <why: the Medium asked / the standards doc requires it / the neighbours do it>
+Test order: build-then-cover | test-first — <why: the Summoner asked / the standards doc requires it / the neighbours do it>
 
 Criteria:
 - [ ] <checkable, specific — what the trial proves and what the scroll ticks>
@@ -99,7 +99,7 @@ Real file paths, real function and class names, an order, and an explicit list o
 touch. A plan the cast phase cannot follow without thinking the problem through again is not
 finished.
 
-**Test-first** when the Medium asked for it, the standards doc requires it, or the neighbours
+**Test-first** when the Summoner asked for it, the standards doc requires it, or the neighbours
 visibly do it (every feature lands with its test in the same commit). Otherwise build, then cover.
 
 ## 6. The plan stop — one at most
@@ -109,11 +109,11 @@ the finding, the road, the steps by name, the biggest risk.
 
 - **Plan clear, no open question** → say "The plan is clear. I cast now." and go on. Do not
   wait for a reply.
-- **One thing genuinely blocks** — a design fork the Medium must choose, a fact only production
+- **One thing genuinely blocks** — a design fork the Summoner must choose, a fact only production
   can give, a "do not touch" that the goal seems to need → one question, with the options, and
   wait. The Log gets `plan stop — asked: <question>`; the Next block offers
   `/rpg:quest --continue .quests/<slug>.md`.
-- The Medium answers "you decide" or nothing useful → out of mana: pick, say why in one line,
+- The Summoner answers "you decide" or nothing useful → out of mana: pick, say why in one line,
   go (`voice.md`).
 
 A question that could be answered by reading more code is not a question. Read the code.

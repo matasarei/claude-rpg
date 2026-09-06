@@ -2,7 +2,7 @@
 
 The fourth phase. The change is built and the trial passed. This writes a description a reviewer
 can use, pushes the branch, and opens the pull request — or updates the one already attached to
-the branch. It never merges here, never force-pushes, never commits on the Medium's behalf.
+the branch. It never merges here, never force-pushes, never commits on the Summoner's behalf.
 
 Not with `--local`: then the quest is `done` at the trial and this file is not read.
 
@@ -38,7 +38,7 @@ git diff --stat <base>...HEAD
 More than one change — a feature plus an unrelated fix, two subsystems with no thread between
 them, a refactor the feature does not need, a dependency bump or formatting sweep riding along,
 two quests' criteria in one branch → **stop and ask**: open one scroll anyway (say which part is
-the passenger, so the description names it), or stop so the Medium can split it (name which
+the passenger, so the description names it), or stop so the Summoner can split it (name which
 commits go where, as information). **Never split or rewrite the branch.** Wait for the answer.
 
 One change — many files with one purpose, implementation plus tests plus docs, a required
@@ -47,7 +47,7 @@ version bump or lock file, a fix for a bug this branch introduced → say so in 
 ## 3. Uncommitted work, and the push
 
 - Uncommitted changes → list them and stop. Ask whether they belong. Never commit on the
-  Medium's behalf; the Daemon's own cast commits are already made.
+  Summoner's behalf; the Daemon's own cast commits are already made.
 - Branch ahead of its remote → push. First push: `git push -u origin quest/<slug>`.
 - Remote ahead of local → stop and say so; someone else pushed here, merging their work is not
   this phase's call.
@@ -91,7 +91,7 @@ gh repo view --json isPrivate -q .isPrivate
 
 `false` → the body ends without it, whatever attribution the session asks for; the
 `Co-Authored-By` trailer in the commits is the attribution. `true` → leave it out unless the
-Medium asks.
+Summoner asks.
 
 ## 5. Create or update
 
@@ -118,19 +118,19 @@ In the chat, under `⚔ <title> · awaiting`:
 
 - the URL, created or updated; `<base>` ← `quest/<slug>`, commits, files;
 - the runner's line, verbatim;
-- **the three places worth the Medium's eyes** — the riskiest file, the seam with old code, the
+- **the three places worth the Summoner's eyes** — the riskiest file, the seam with old code, the
   test that proves the criterion;
 - the sidequests found on the road, each with the suggested word;
-- the Next block: `/rpg:quest --continue .quests/<slug>.md` once the Medium has looked, and the
+- the Next block: `/rpg:quest --continue .quests/<slug>.md` once the Summoner has looked, and the
   `--take` of any sidequest suggested for now.
 
-The run ends here. The Medium's judgement is `judgement.md`, on `--continue`.
+The run ends here. The Summoner's judgement is `judgement.md`, on `--continue`.
 
 ## Edge cases
 
 - **One commit** — a three-line description. Do not pad it.
 - **The base has moved and GitHub will show conflicts** → say so. Do not rebase; that is the
-  Medium's decision.
+  Summoner's decision.
 - **A fork** → `gh pr create --head <owner>:quest/<slug>`; confirm the target repository first —
   a scroll opened against the wrong upstream is public and awkward to undo.
 - **The repository requires a ticket key or a signed commit** and the branch lacks it → say what

@@ -20,7 +20,7 @@ a step turns out to be wrong, it stops and says so.
    standards doc and the neighbours are silent: readable, then changeable, then extendable, then
    efficient. Write it yourself, install it as a dependency, or take it from code under the
    project's own licence with its header kept; anything under another licence needs the
-   Medium's word first (`code-provenance.md`).
+   Summoner's word first (`code-provenance.md`).
 3. **Check it at once** — lint the changed file through `exec.prefix` if the profile has a
    `lint`; run the scoped test if one covers it. A mistake found now costs a minute; found four
    steps later it costs the afternoon.

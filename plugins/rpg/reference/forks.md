@@ -10,7 +10,7 @@ Forks exist because one process is sometimes too few — not because more is alw
 | Fork | Forked for | Can | Cannot | Reports |
 |---|---|---|---|---|
 | `fork-scout` | the investigate phase, when a large unfamiliar area must be swept before the plan can be written | Read, Grep, Glob, Bash (read-only use) | edit, commit, decide | the files and lines that matter, one line each, each tagged `[from the code]`; open questions it could not settle |
-| `fork-hand` | the cast phase, when two or more steps touch disjoint files and change no shared interface | edit the files on its list, run the scoped test and lint | commit, push, touch a file off its list, change a signature another part depends on, talk to the Medium | the diff it made (`git diff -- <its files>`), the scoped test line verbatim, anything it noticed but left alone |
+| `fork-hand` | the cast phase, when two or more steps touch disjoint files and change no shared interface | edit the files on its list, run the scoped test and lint | commit, push, touch a file off its list, change a signature another part depends on, talk to the Summoner | the diff it made (`git diff -- <its files>`), the scoped test line verbatim, anything it noticed but left alone |
 | `fork-eye` | the trial, when the diff is large, or the scroll, as a second reader while the Daemon writes the description | Read, Grep, Glob, Bash (read-only use) | edit, commit | findings in the trial's shape: `path:line`, severity, one sentence on the problem, one on the fix, the line of evidence |
 
 ## When — and when not
@@ -30,8 +30,8 @@ Never fork:
 - for a one-file change, or a change under ~50 lines — the fork costs more than the work;
 - for a step whose output the next step needs at once — that is sequential work, do it;
 - when `--no-forks` was passed;
-- to talk to the Medium, or to decide anything the plan left open — decisions are the Daemon's,
-  with the Medium.
+- to talk to the Summoner, or to decide anything the plan left open — decisions are the Daemon's,
+  with the Summoner.
 
 **Three at once at most.** Wait for them before forking more.
 
@@ -86,4 +86,4 @@ The forks are back. CSV writer: 61 lines, `OK (3 tests, 9 assertions)`. XLSX cle
 `OK (2 tests, 6 assertions)`. I run the full trial now.
 ```
 
-Never more than one line per fork. The Medium sees the party, not the paperwork.
+Never more than one line per fork. The Summoner sees the party, not the paperwork.
