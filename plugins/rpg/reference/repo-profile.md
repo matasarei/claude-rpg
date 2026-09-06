@@ -13,8 +13,10 @@ every invocation is the single most wasteful thing these skills could do — so 
 user passes `--reprofile`, or when a command in it demonstrably no longer works (e.g. the
 test command errors with "not found"). After detection, write the file.
 
-Add `.claude/repo-profile.json` to `.gitignore` if it is not already covered — it describes
-one Medium's machine, not the project.
+`.claude/repo-profile.json` is hidden through git's **global** excludes file
+(`git config --global core.excludesFile`, default `~/.config/git/ignore`), never through the
+project's `.gitignore` — it describes one Medium's machine, not the project, and the project
+must not carry a trace of it. `/rpg:party` adds the line; `git check-ignore -q` proves it.
 
 **The stored commands are executed, so the file is code.** It is trusted because it is local,
 ignored, and written by the Medium's own session — and only then. Read it from the primary

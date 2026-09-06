@@ -6,15 +6,18 @@ things stand. A session that ends mid-quest resumes from it with `/rpg:quest --c
 
 ## Where, and why it is ignored
 
-`.quests/` is created by `/rpg:party` and added to `.gitignore`. It is ignored on purpose:
+`.quests/` is created by `/rpg:party` and hidden through **git's global excludes file**
+(`git config --global core.excludesFile`, default `~/.config/git/ignore`) — never through the
+project's own `.gitignore`, which the party does not touch. It is ignored on purpose:
 
 - it describes one Medium's road, not the project;
 - an ignored directory survives branch switches, so a questline that spans five branches keeps
   its files while the tree moves under it;
 - nothing in it is a deliverable — the pull request is.
 
-A team that wants to share questlines can commit the directory; that is the Medium's call, made
-once, and `/rpg:party` says which it found.
+The project itself carries no trace of the game: no ignore line, no `CLAUDE.md`, no `AGENTS.md`.
+A team that wants to share questlines can still commit the directory by hand; that is the
+Medium's call, and `/rpg:party` says which it found.
 
 ## Names
 
