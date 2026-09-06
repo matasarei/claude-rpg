@@ -1,0 +1,11 @@
+.DS_Store
+.idea/
+
+# describes one developer's machine, not the project
+.claude/repo-profile.json
+
+# the party's road: quest files written by /rpg:quest — local, not history
+.quests/
+
+# plans and scratch notes
+.tasks/
