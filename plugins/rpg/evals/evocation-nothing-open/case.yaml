@@ -1,0 +1,24 @@
+schema_version: "1.1"
+name: evocation-nothing-open
+description: >
+  An evocation with no quest open and no question asked. The Daemon reads the small fixture and
+  calls up two or three roads with cost and risk, recommends one, and puts its exact command
+  first in the Next block. Read-only: nothing is written.
+tags: [evocation, read-only]
+
+context:
+  scaffold_script: scaffold.sh
+
+execution:
+  prompt: /rpg:evocation
+  max_turns: 12
+  timeout_seconds: 400
+  allowed_tools: [Skill, Read, Glob, Grep, Bash]
+
+runs: 2
+
+expected_outcome: >
+  Two or three named roads, each with a cost and a risk in a line, one recommendation with a
+  one-line why, and a Next block whose first line is an exact /rpg:quest, /rpg:questline or
+  /rpg:sidequest command. No file written, no commit. Every number or fact carries a source tag
+  such as [from the code].

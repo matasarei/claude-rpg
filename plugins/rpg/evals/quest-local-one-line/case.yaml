@@ -1,0 +1,28 @@
+schema_version: "1.1"
+name: quest-local-one-line
+description: >
+  A whole --local quest on a one-line change: the Daemon scries, draws a Map with file lists,
+  casts on a quest branch with one commit per step, runs the trial with the runner's line quoted
+  verbatim, and stops at done without pushing (there is no remote). The quest file ends ticked,
+  and the commit message's first line is plain.
+tags: [quest, cast, trial, gate]
+
+context:
+  scaffold_script: scaffold.sh
+
+execution:
+  prompt: >
+    /rpg:quest --local add a farewell(name) function next to greet, returning "Goodbye, <name>!",
+    with a test
+  max_turns: 60
+  timeout_seconds: 900
+  allowed_tools: [Skill, Read, Glob, Grep, Bash, Write, Edit, Agent]
+
+runs: 2
+
+expected_outcome: >
+  A branch quest/<slug> with at least one commit; greet.py gains farewell and test_greet.py a
+  test; the answer quotes the unittest result line (Ran 2 tests … OK) verbatim; the quest file
+  under .quests/ has status done, ticked criteria, and Create/Modify/Test lines on its steps;
+  nothing was pushed and no pull request was attempted; the commit's first line is a plain
+  imperative summary with no emoji or role name.
