@@ -133,7 +133,9 @@ or a usage limit, rebuilding nothing.
 /rpg:questline replace the hand-written export layer with one writer per format
 ```
 
-The Daemon scries the goal, cuts it into three to seven quests that each merge alone
+The Daemon scries the goal — asking up to three questions in one message first when the goal
+leaves a real fork open, the only place it asks more than one — cuts it into three to seven
+quests that each merge alone
 and leave the base branch working, shows you the road, and starts the first quest on your word.
 After each merge, `/rpg:questline --continue .quests/questline-<slug>.md` takes the next.
 
