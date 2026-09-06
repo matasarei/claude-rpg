@@ -74,6 +74,9 @@ cases() {
 0|git commit -m \"never pass --no-verify\"
 0|git commit -m \"push --force is banned here\"
 0|git commit -m 'do not --amend'
+0|git commit -m \"it's done\" && echo \"that's it\"
+# refused — apostrophes inside double quotes do not hide a flag between them
+2|git commit -m \"it's\" && git push --force && echo \"that's\"
 # refused — the flags outside the quotes are still seen
 2|git commit -m \"msg\" && git push --force
 # allowed — nothing to do with git, or nothing to read

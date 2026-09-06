@@ -28,8 +28,10 @@ refuse() { printf 'The guard refuses: %s\n' "$1" >&2; exit 2; }
 # Match against the command with quoted text blanked out: a commit message
 # that names a flag — git commit -m "never pass --no-verify" — is talk about
 # the flag, not use of it. Everything outside the quotes survives, so the
-# flags themselves are still seen.
-scan="$(printf '%s' "$cmd" | sed -E "s/'[^']*'/''/g; s/\"[^\"]*\"/\"\"/g")"
+# flags themselves are still seen. One alternation, consumed left to right,
+# so whichever quote opens first owns the string: "it's" is a double-quoted
+# word, not the start of a single-quoted one that swallows what follows.
+scan="$(printf '%s' "$cmd" | sed -E "s/('[^']*'|\"[^\"]*\")/\"\"/g")"
 
 if printf '%s' "$scan" | grep -Eq 'git[^|;&]*push[^|;&]*(--force|--force-with-lease|(^|[[:space:]])-f([[:space:]]|$))'; then
   refuse "a forced push rewrites history somebody may have. Push a new commit instead."
