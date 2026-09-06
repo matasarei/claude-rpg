@@ -1,0 +1,8 @@
+{
+  "name": "rpg",
+  "description": "Claude RPG: Claude is the Archmage, you are the Medium. /rpg:party (camp in a repository), /rpg:quest (investigate, cast, trial, scroll, the Medium's judgement, merge), /rpg:questline (a road of quests to one goal), /rpg:sidequest (things found on the road), /rpg:journal (where are we), /rpg:evocation (roads ahead when you are out of mana). Mirrors (subagents) help when there is too much for one pair of hands.",
+  "author": { "name": "Yevhen Matasar", "url": "https://github.com/matasarei" },
+  "license": "MIT",
+  "repository": "https://github.com/matasarei/claude-rpg",
+  "keywords": ["rpg", "quest", "workflow", "pull-request", "subagents", "game"]
+}
