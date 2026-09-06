@@ -83,7 +83,8 @@ Criteria:
 - [ ] <checkable, specific>
 
 Steps:
-1. [ ] <file-level, buildable one at a time>
+1. [ ] <one action, buildable and testable on its own>
+   Create: `<path>` · Modify: `<path>:<lines>` · Test: `<test path or scoped command>`
 
 ## Log
 - 2026-09-06 14:02 taken — branch quest/export-csv

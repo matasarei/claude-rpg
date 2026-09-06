@@ -91,7 +91,8 @@ Criteria:
 - [ ] <for background work: the request returns without waiting, and how the result is reached>
 
 Steps:
-1. [ ] <ordered, file-level, real paths and names, buildable one at a time>
+1. [ ] <one action, buildable and testable on its own>
+   Create: `<path>` · Modify: `<path>:<lines>` · Test: `<test path or the scoped command>`
 
 Do not touch:
 - <files, tables or behaviour that must stay as they are, and why>
@@ -103,6 +104,14 @@ Open questions:
 Real file paths, real function and class names, an order, and an explicit list of what not to
 touch. A map the cast phase cannot follow without thinking the problem through again is not
 finished.
+
+**Every step lists its files** — `Create:` for new ones, `Modify:` with the line range for
+existing ones, `Test:` for what proves it. A step is the smallest unit that carries its own test
+cycle: small enough that a reviewer could reject it alone, large enough that its test means
+something. Setup, configuration and documentation fold into the step whose deliverable needs
+them. The lists are not decoration: the cast reads exactly them, the trial greps the `Modify:`
+paths for symbols that changed, and two steps whose lists share no file and no interface are what
+a fork-hand can take (`forks.md`, "Split cast").
 
 **Test-first** when the Summoner asked for it, the standards doc requires it, or the neighbours
 visibly do it (every feature lands with its test in the same commit). Otherwise build, then cover.

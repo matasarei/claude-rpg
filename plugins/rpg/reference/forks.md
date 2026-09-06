@@ -19,9 +19,10 @@ Fork when one of these is true, and say so in one line before doing it:
 
 - **Sweep**: the scrying needs more than five files read in full to find where the change
   goes, and the area is unfamiliar. One scout.
-- **Split cast**: the map has parts that touch disjoint files and share no interface being
-  changed — two writers, a command and its documentation, three call sites of a renamed thing.
-  One hand per part, three at most.
+- **Split cast**: the Map's steps carry file lists; two or more steps whose `Create:` and
+  `Modify:` lists share no file, and that change no interface the other depends on, are a split
+  — two writers, a command and its documentation, three call sites of a renamed thing. One hand
+  per part, three at most, each given exactly its steps' lists.
 - **Second reader**: the diff is over about 300 changed lines, or touches money, grades, records
   of record, authentication or permissions. One eye, while the Daemon writes the scroll.
 
