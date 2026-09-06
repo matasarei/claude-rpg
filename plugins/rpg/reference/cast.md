@@ -13,8 +13,9 @@ a step turns out to be wrong, it stops and says so.
 
 ## Each step, in order
 
-1. **Read** the files the step touches, and enough around them not to break the seam between
-   new code and what it calls.
+1. **Read** the files the step lists — its `Create:`, `Modify:` and `Test:` lines — and enough
+   around them not to break the seam between new code and what it calls. A file the step needs
+   but does not list is added to the list first, in the quest file, so the Map stays true.
 2. **Make the change.** Match the file being edited — its naming, its structure, its comment
    style. Consistency with the neighbours beats consistency with a style guide. Where the
    standards doc and the neighbours are silent: readable, then changeable, then extendable, then

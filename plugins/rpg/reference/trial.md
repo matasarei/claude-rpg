@@ -48,7 +48,8 @@ included. Every finding gets one of three severities:
 
 - **BLOCKER** — do not open the scroll. A secret committed; a change that silently loses or
   corrupts data; a mass write with no bounded scope or no dry-run; a data fix that duplicates on
-  a second run; a removed or renamed function still called elsewhere (grep for it); user input
+  a second run; a removed or renamed function still called elsewhere (grep the whole tree for
+  every symbol the Map's `Modify:` files renamed or removed); user input
   reaching SQL, a shell, the filesystem, HTML or a spreadsheet cell unescaped; an entry point
   with no login or permission check; a record reachable by changing an id; a state change with
   no CSRF token; a block from a codebase under a different licence with no word on record; a
