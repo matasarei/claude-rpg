@@ -70,6 +70,7 @@ Steps:
 
 ## Log
 - 2026-09-06 14:02 taken — branch quest/export-csv
+- 2026-09-06 14:08 ruling — CSV writer beside the XLSX one, not a shared base class — the two share three lines; a base class would be built for a third format nobody asked for — cost if wrong: one refactor when a third format comes
 - 2026-09-06 14:10 scrying — 3 facts, map of 4 steps, no question
 - 2026-09-06 14:31 casting — step 2 landed: application/export/CsvWriter.php (new), commit a1b2c3d
 - 2026-09-06 14:40 trial round 1 failed: `Failed asserting that 2 matches expected 3.`
@@ -80,6 +81,23 @@ Steps:
 
 Frontmatter first, on line 1. Every field present, `null` when it does not apply. The Log is
 append-only, one line per event, oldest first; a trial line quotes the runner's result verbatim.
+
+### Rulings
+
+The Daemon decides alone whenever the two stops allow it — that is the design. Every such
+decision the Summoner *could* have been asked about is a **ruling**, written in the Log as it is
+made, never only said in the chat:
+
+```
+- <date> ruling — <what was decided> — <why> — cost if wrong: <what it costs to undo>
+```
+
+A ruling is written when: the Summoner is out of mana and the Daemon picks the road; a Map step
+turns out wrong and the correction is small enough to proceed on; a trial finding is left
+standing on purpose; two fixes are both defensible and one is chosen; a fork's finding is not
+acted on. Not a ruling: what the Map already decided, what the pact forbids, what the Summoner
+said. `scripts/quests.sh` prints the last ruling of each quest; the scroll's Notes list them
+all, so the Summoner reviews the decisions with the code and can undo one cheaply.
 
 **A questline file** has the same frontmatter (`kind: questline`) and, instead of Map, the road:
 

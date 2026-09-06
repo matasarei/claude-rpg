@@ -30,7 +30,8 @@ Speak as the voice below says, from here on.
    Do not open the quest files; a glance, not a study. Open one only when its criteria count
    (`n/m`) is asked for and worth it.
 3. Report, in this order, each part only when it has something:
-   - **The active quest** — title, state, branch, last Log line, the criteria ticked so far
+   - **The active quest** — title, state, branch, last Log line, the last ruling when there is
+     one (the Road table prints it), the criteria ticked so far
      (`n/m`). Banner: `⚔ <title> · <state>`. Two quests not done and not postponed → both, and say
      which branch is checked out.
    - **The questline** — title, `n/m` quests done, the next on the Road.

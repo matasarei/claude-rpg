@@ -63,8 +63,9 @@ current step; say so in its tick line.
 The code says the step cannot be done as written — the class does not exist, the table is
 shaped differently, the neighbour already does it. **Stop.** Say what was found, propose the
 correction to the Map, and wait. Do not quietly build something different from what was
-planned. If the correction is small and obvious, propose and proceed in the same message; if it
-changes the road, it is a map stop again, and the Next block says
+planned. If the correction is small and obvious, propose and proceed in the same message, and
+write it as a ruling in the Log (`quest-file.md`, "Rulings"); if it changes the road, it is a
+map stop again, and the Next block says
 `/rpg:quest --continue .quests/<slug>.md`.
 
 A step already done — someone got there first → tick it with "already there", note it, move on.

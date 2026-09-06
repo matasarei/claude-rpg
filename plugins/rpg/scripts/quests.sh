@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # The road so far, as data: one line per file in .quests/ — kind, status, and the
-# frontmatter fields the journal needs, plus the last Log line. Read-only.
+# frontmatter fields the journal needs, plus the last Log line and the last ruling. Read-only.
 # Injected into the skills so the Daemon reads a table, not every quest file.
 dir="${1:-.quests}"
 [ -d "$dir" ] || { echo "no $dir/ — run /rpg:summon first"; exit 0; }
@@ -9,7 +9,7 @@ for f in "$dir"/*.md; do
   [ -e "$f" ] || continue
   found=1
   awk -v file="$f" '
-    BEGIN { fm=0; kind="?"; status="?"; ql="null"; br="null"; pr="null"; dec="null"; found="null"; title=""; last="" }
+    BEGIN { fm=0; kind="?"; status="?"; ql="null"; br="null"; pr="null"; dec="null"; found="null"; title=""; last=""; ruling="" }
     NR==1 && $0=="---" { fm=1; next }
     fm==1 && $0=="---" { fm=2; next }
     fm==1 {
@@ -20,10 +20,11 @@ for f in "$dir"/*.md; do
       next
     }
     fm==2 && title=="" && /^# / { title=substr($0,3); next }
-    /^- / { last=$0 }
+    /^- / { last=$0; if ($0 ~ / ruling — /) ruling=$0 }
     END {
       printf "%s | %s | %s | title: %s | questline: %s | branch: %s | pr: %s | decision: %s | found-during: %s\n", file, kind, status, title, ql, br, pr, dec, found
       if (last!="") printf "    last: %s\n", substr(last,3)
+      if (ruling!="") printf "    ruling: %s\n", substr(ruling,3)
     }' "$f"
 done
 [ "$found" = 1 ] || echo "$dir/ is empty — no quests yet"
