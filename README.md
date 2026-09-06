@@ -303,6 +303,10 @@ plugins/rpg/
   scripts/voice.sh           prints the voice for injection
 ```
 
+Evals live in `plugins/rpg/evals/`, one case per skill that runs without a remote, each
+building its own throwaway fixture: `claude plugin eval plugins/rpg --scaffold` (early access;
+see `plugins/rpg/evals/README.md`).
+
 Conventions: every in-plugin path is `${CLAUDE_PLUGIN_ROOT}/…`; every injected shell command ends
 in `|| true`; skills that write are `disable-model-invocation: true`; skills that only read carry
 `disallowed-tools: Edit, Write, NotebookEdit`; nothing under `plugins/rpg/` names any other
