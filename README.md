@@ -22,10 +22,6 @@ one process, the Daemon **forks** — copies of itself, with its rules, that sco
 read a diff as a second pair of eyes. Other agents in the machine are **spirits**: the Daemon may
 ask them a question, but never trusts them with the code.
 
-The voice is short and plain, in the spirit of the game *Nox*: easy to read for a non-native
-speaker, game-like, never in the way of the facts. Paths, commands, test lines and errors are
-always quoted as they are.
-
 ## Contents
 
 - [Install](#install)
