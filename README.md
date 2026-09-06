@@ -284,7 +284,7 @@ Then `/rpg:summon` in any repository. `/reload-plugins` picks up edits. Before a
 ```bash
 claude plugin validate .                 # the marketplace
 claude plugin validate plugins/rpg       # the plugin (the version warning is intended)
-echo '{"tool_input":{"command":"git push --force origin x"}}' | plugins/rpg/scripts/guard.sh; echo $?   # 2
+bash evals/guard/cases.sh                # the guard's behaviour cases, with and without jq
 ```
 
 Layout:
