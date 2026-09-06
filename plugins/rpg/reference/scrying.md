@@ -115,6 +115,7 @@ the finding, the road, the steps by name, the biggest risk.
   wait. The Log gets `map stop — asked: <question>`; the Next block offers
   `/rpg:quest --continue .quests/<slug>.md`.
 - The Summoner answers "you decide" or nothing useful → out of mana: pick, say why in one line,
+  write the ruling in the Log (`quest-file.md`, "Rulings"),
   go (`voice.md`).
 
 A question that could be answered by reading more code is not a question. Read the code.
