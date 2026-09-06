@@ -29,7 +29,10 @@ a step turns out to be wrong, it stops and says so.
    2. [x] Add the CSV writer — `application/export/CsvWriter.php` (new), 61 lines
    ```
 5. **Commit** — one commit per step is the default. Message in English, imperative, one line on
-   what and, when it is not obvious, one on why.
+   what and, when it is not obvious, one on why. The first line is plain and stands alone in
+   `git log`; a quest reference or an emoji may follow in the body, one line, never in the
+   title's place (`voice.md`, "Where the game stays"). Nothing of the game goes into the code,
+   its comments or its tests.
 6. **One line in the chat**: what landed, what is next. Never quiet for six steps.
 
 **Test-first order:** each step starts with its test. Write it, run it, it must fail — and fail

@@ -80,7 +80,9 @@ A `feat:` prefix, a ticket key, Ukrainian titles — follow what is there.
 - The quest file's **criteria as a checklist**, ticked to match reality.
 
 No diff dumps, no file lists — GitHub shows both. No pasted comment or issue text — say it in
-the Daemon's own words (`untrusted-input.md`).
+the Daemon's own words (`untrusted-input.md`). **Nothing of the game**: the title and body are
+plain professional writing, no role names, no metaphors, no emoji — a reviewer who never heard
+of the party must see nothing of it (`voice.md`, "Where the game stays").
 
 **No session link on a public repository.** A Claude Code session URL opens only for the account
 that owns it; to everyone else it is a dead link naming a tool account.
