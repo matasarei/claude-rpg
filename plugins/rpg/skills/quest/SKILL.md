@@ -3,7 +3,7 @@ name: quest
 description: Take a quest — one piece of work that ends in one merged pull request. The Archmage investigates, casts (implements, commit per step), holds the trial (lint, tests, review, security, drive the real thing; cast and trial loop up to three rounds), writes the scroll (PR), then waits for the Medium's judgement and merges on the Medium's words. Two stops only: one question at most before casting, and the judgement at the end. Mirrors (subagents) help when parts are independent.
 argument-hint: "<goal> | <.quests/file.md> [--continue] [--local] [--no-mirrors]"
 disable-model-invocation: true
-allowed-tools: Bash(git status *) Bash(git branch *) Bash(git log *) Bash(git diff *) Bash(git remote *) Bash(git rev-parse *) Bash(gh pr view *) Bash(gh pr list *) Bash(gh auth status) Bash(ls *) Bash(cat *)
+allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/voice.sh) Bash(git status *) Bash(git branch *) Bash(git log *) Bash(git diff *) Bash(git remote *) Bash(git rev-parse *) Bash(gh pr view *) Bash(gh pr list *) Bash(gh auth status) Bash(ls *) Bash(cat *)
 hooks:
   PreToolUse:
     - matcher: "Bash"
@@ -14,8 +14,12 @@ hooks:
 
 # /rpg:quest — one quest, from the first look to the merge
 
-Read `${CLAUDE_PLUGIN_ROOT}/reference/voice.md` first and speak that way from here on. Every
+Speak as the voice below says, from here on. Every
 message starts with the banner `⚔ <title> · <state>` and ends with **Next**.
+
+## The voice
+
+!`"${CLAUDE_PLUGIN_ROOT}/scripts/voice.sh" || true`
 
 The Medium says: $ARGUMENTS
 
@@ -31,7 +35,9 @@ The Medium says: $ARGUMENTS
 Strip surrounding quotes, then check whether what remains **is an existing file**. It is → the
 quest file to start or resume. It is not, and looks like a path (`.quests/…`, ends in `.md`) →
 stop with "no such quest file"; never build something invented from a mistyped path. Otherwise
-→ a goal in prose. Nothing at all → ask what the quest is, in one line, and stop.
+→ a goal in prose. **Flags are not part of the goal**: strip `--continue`, `--local`, `--no-mirrors`
+before building the slug and the Asked line. Nothing at all → ask what the quest is, in one line,
+and stop.
 
 - `--continue` — resume the quest file at its `status`. Without a file: the one quest whose
   status is not `done`, `postponed` or `dropped`; two or more → ask which.

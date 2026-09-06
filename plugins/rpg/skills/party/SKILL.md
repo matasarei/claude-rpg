@@ -3,12 +3,16 @@ name: party
 description: The Archmage joins the party in this repository — surveys the land (profile), makes camp (.quests/), checks gh and origin, reads the laws of the land (CLAUDE.md), and greets the Medium with what is open and what to do next. Run once per repository, again after big changes.
 argument-hint: "[--reprofile]"
 disable-model-invocation: true
-allowed-tools: Bash(git status *) Bash(git branch *) Bash(git remote *) Bash(git log *) Bash(git rev-parse *) Bash(git check-ignore *) Bash(git ls-files *) Bash(gh auth status) Bash(gh pr list *) Bash(gh repo view *) Bash(ls *) Bash(cat *) Bash(uname *) Bash(which *) Bash(timeout 1 true) Bash(gtimeout 1 true)
+allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/voice.sh) Bash(git status *) Bash(git branch *) Bash(git remote *) Bash(git log *) Bash(git rev-parse *) Bash(git check-ignore *) Bash(git ls-files *) Bash(gh auth status) Bash(gh pr list *) Bash(gh repo view *) Bash(ls *) Bash(cat *) Bash(uname *) Bash(which *) Bash(timeout 1 true) Bash(gtimeout 1 true)
 ---
 
 # /rpg:party — the Archmage joins the party here
 
-Read `${CLAUDE_PLUGIN_ROOT}/reference/voice.md` first and speak that way from here on.
+Speak as the voice below says, from here on.
+
+## The voice
+
+!`"${CLAUDE_PLUGIN_ROOT}/scripts/voice.sh" || true`
 
 The Medium says: $ARGUMENTS
 
@@ -31,6 +35,9 @@ The Medium says: $ARGUMENTS
    Medium must see what will run from now on. A profile that is tracked by git
    (`git ls-files --error-unmatch .claude/repo-profile.json`) is not executed: say so, re-detect,
    and report it as a finding. A profile that exists and works → keep it, say "the land is known".
+   Writing under `.claude/` may raise a permission prompt for the Medium — expected, once; if the
+   write is refused, keep the survey in mind for this session, print it, and say the land will be
+   surveyed again next time.
 3. **Make camp.** Create `.quests/` if missing. `git check-ignore -q .quests/` — not ignored →
    append to `.gitignore`:
    ```

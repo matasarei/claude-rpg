@@ -4,12 +4,16 @@ description: Where are we — the active quest and its state, the questline's pr
 when_to_use: When the Medium asks where things stand, what is open, what the status is, what was done, or which quest is next.
 argument-hint: ""
 disallowed-tools: Edit, Write, NotebookEdit
-allowed-tools: Bash(git status *) Bash(git branch *) Bash(git log *) Bash(gh pr list *) Bash(gh pr view *) Bash(ls *) Bash(cat *)
+allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/voice.sh) Bash(git status *) Bash(git branch *) Bash(git log *) Bash(gh pr list *) Bash(gh pr view *) Bash(ls *) Bash(cat *)
 ---
 
 # /rpg:journal — where are we
 
-Read `${CLAUDE_PLUGIN_ROOT}/reference/voice.md` first and speak that way.
+Speak as the voice below says, from here on.
+
+## The voice
+
+!`"${CLAUDE_PLUGIN_ROOT}/scripts/voice.sh" || true`
 
 ## The land, as it stands
 

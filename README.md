@@ -175,7 +175,9 @@ Only you, typing here, can lift one of these — and only for the work, never fo
   switches. Commit it if your team wants to share questlines.
 - `.claude/repo-profile.json` — the survey of the land: base branch, where commands run
   (container or host), lint, test and build commands, the runtime surface. Detected once,
-  cached, ignored. The Archmage prints the commands when it first writes them.
+  cached, ignored. The Archmage prints the commands when it first writes them. Claude Code
+  protects `.claude/`, so this one write may ask your permission once; refused, the Archmage keeps
+  the survey for the session and surveys again next time.
 - `.gitignore` — the two entries above, added if missing.
 - `CLAUDE.md` — only when the repository has no standards doc at all, only on your word, and
   only a commands table plus a stub.

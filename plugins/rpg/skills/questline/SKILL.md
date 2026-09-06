@@ -3,7 +3,7 @@ name: questline
 description: A road of quests to one goal — a refactoring, a big feature, anything too large for one pull request. The Archmage investigates the goal, splits it into ordered quests that each merge alone and leave the base branch working, writes the questline and its quest files, asks the Medium to bless the road, then starts the first quest. --continue after a merge takes the next.
 argument-hint: "<goal> | <.quests/questline-*.md> [--continue]"
 disable-model-invocation: true
-allowed-tools: Bash(git status *) Bash(git branch *) Bash(git log *) Bash(git diff *) Bash(gh pr list *) Bash(ls *) Bash(cat *)
+allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/voice.sh) Bash(git status *) Bash(git branch *) Bash(git log *) Bash(git diff *) Bash(gh pr list *) Bash(ls *) Bash(cat *)
 hooks:
   PreToolUse:
     - matcher: "Bash"
@@ -14,8 +14,12 @@ hooks:
 
 # /rpg:questline — many quests, one goal
 
-Read `${CLAUDE_PLUGIN_ROOT}/reference/voice.md` first and speak that way. Banner:
+Speak as the voice below says, from here on. Banner:
 `⚔ <questline title> · road`, then `Next`.
+
+## The voice
+
+!`"${CLAUDE_PLUGIN_ROOT}/scripts/voice.sh" || true`
 
 The Medium says: $ARGUMENTS
 

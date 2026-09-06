@@ -4,13 +4,17 @@ description: The Medium is out of mana — the Archmage calls up the roads ahead
 when_to_use: When the Medium says they do not know what to do next, asks for options or advice, says "you decide", asks what is worth doing here, or a quest is stuck.
 argument-hint: "[<question or the thing that is stuck>]"
 disallowed-tools: Edit, Write, NotebookEdit
-allowed-tools: Bash(git status *) Bash(git branch *) Bash(git log *) Bash(git diff *) Bash(git grep *) Bash(gh pr list *) Bash(gh pr view *) Bash(gh issue list *) Bash(ls *) Bash(cat *) Bash(wc *) Bash(find *)
+allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/voice.sh) Bash(git status *) Bash(git branch *) Bash(git log *) Bash(git diff *) Bash(git grep *) Bash(gh pr list *) Bash(gh pr view *) Bash(gh issue list *) Bash(ls *) Bash(cat *) Bash(wc *) Bash(find *)
 ---
 
 # /rpg:evocation — the roads ahead
 
-Read `${CLAUDE_PLUGIN_ROOT}/reference/voice.md` first and speak that way. Banner: the active
+Speak as the voice below says, from here on. Banner: the active
 quest's, if one is active; else none.
+
+## The voice
+
+!`"${CLAUDE_PLUGIN_ROOT}/scripts/voice.sh" || true`
 
 The Medium asks: $ARGUMENTS
 

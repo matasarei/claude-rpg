@@ -3,7 +3,7 @@ name: sidequest
 description: Things found on the road that are not blocking — a bug beside the one being fixed, a missing check, a small refactor. Records one, lists them, takes one (it becomes a quest), or drops one with the reason kept. The Archmage suggests now, after or never with the road-back test.
 argument-hint: "[<what was found>] [--list] [--take <slug>] [--drop <slug>]"
 disable-model-invocation: true
-allowed-tools: Bash(git status *) Bash(git branch *) Bash(git log *) Bash(ls *) Bash(cat *)
+allowed-tools: Read(/${CLAUDE_PLUGIN_ROOT}/**) Bash(${CLAUDE_PLUGIN_ROOT}/scripts/voice.sh) Bash(git status *) Bash(git branch *) Bash(git log *) Bash(ls *) Bash(cat *)
 hooks:
   PreToolUse:
     - matcher: "Bash"
@@ -14,8 +14,12 @@ hooks:
 
 # /rpg:sidequest — found on the road
 
-Read `${CLAUDE_PLUGIN_ROOT}/reference/voice.md` first and speak that way. Banner: the active
+Speak as the voice below says, from here on. Banner: the active
 quest's, if one is active; else none.
+
+## The voice
+
+!`"${CLAUDE_PLUGIN_ROOT}/scripts/voice.sh" || true`
 
 The Medium says: $ARGUMENTS
 

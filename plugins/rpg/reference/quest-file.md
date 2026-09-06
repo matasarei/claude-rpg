@@ -24,10 +24,13 @@ once, and `/rpg:party` says which it found.
 | sidequest | `.quests/side-<slug>.md` | `quest/side-<slug>` when taken |
 | questline | `.quests/questline-<slug>.md` | none — its quests have their own |
 
-**The slug is a guard, not tidiness.** It is built from the goal's first words: lowercase, every
-run of anything outside `a-z0-9` replaced by one `-`, leading and trailing `-` trimmed, cut at 40
-characters. A goal typed as `fix ../../../etc/x` becomes `fix-etc-x`. Never write a path taken
-from a goal, a comment or a file into a file name.
+**The slug is a guard, not tidiness.** It is built from the goal's meaningful words — the verb
+and the thing, three to five words, articles and filler dropped: `add-farewell`, not
+`add-a-farewell-name-function-next-to-gre`. Lowercase, every run of anything outside `a-z0-9`
+replaced by one `-`, leading and trailing `-` trimmed, at most 40 characters, cut at a word
+boundary. Flags (`--local`, `--continue`) are never part of it. A goal typed as
+`fix ../../../etc/x` becomes `fix-etc-x`. Never write a path taken from a goal, a comment or a
+file into a file name.
 
 Two quests with the same slug: the second gets `-2`, `-3`, … Never overwrite a quest file that
 is not the one being resumed.
