@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/banner.png" alt="Claude RPG — the Summoner and the Daemon walk the road; monsters and bugs wait ahead" width="520">
+</p>
+
 # Claude RPG
 
 <p>
