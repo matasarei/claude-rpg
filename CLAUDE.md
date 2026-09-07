@@ -55,8 +55,10 @@ it; the reason is in the newest file under `~/.claude/debug/` (grep `permission 
   plugins/rpg --scaffold`. Each scaffold must build and its test pass (`bash scaffold.sh` in a
   temp dir); `case.yaml` must parse (Ruby's YAML is on this machine, PyYAML is not).
 - **The guard** (`scripts/guard.sh`) is a `PreToolUse` hook declared in the frontmatter of the
-  writing skills. It refuses `--force`, `--force-with-lease`, `--no-verify`, `--amend` and any
-  push to `main`/`master`/the profile's base branch, exit 2 with the reason on stderr.
+  writing skills. It refuses `--force`, `--force-with-lease`, `--no-verify`, `--amend`, any
+  push to `main`/`master`/the profile's base branch, and the gh commands no phase uses —
+  `pr review --approve`, `pr merge --admin`, `release`, `workflow run`, `api …/merge` — exit 2
+  with the reason on stderr. `gh pr merge` itself stays allowed: judgement merges on the words.
 - **The words are the product.** Roles: the Summoner (user), the Daemon (Claude), forks
   (`fork-scout`, `fork-hand`, `fork-eye` — the Daemon split), spirits (other agents), the pact
   (the rules floor). Phases: summon, scry (draws the map), cast, trial, scroll, judgement. Only
