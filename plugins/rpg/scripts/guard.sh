@@ -6,7 +6,11 @@
 #   git commit --amend
 #   --no-verify on any git command
 #   git push to the base branch (main, master, or the profile's baseBranch)
-# Everything else exits 0 and the command runs.
+# and the gh commands that are no phase of any quest:
+#   gh pr review --approve, gh pr merge --admin, gh release, gh workflow run,
+#   gh api ... /merge
+# Everything else exits 0 and the command runs — gh pr merge included: the
+# judgement phase merges on the Summoner's words, and no hook can check words.
 #
 # Behaviour cases: evals/guard/cases.sh in the repository, run with and without jq.
 
@@ -21,7 +25,7 @@ else
 fi
 
 [ -n "$cmd" ] || exit 0
-case "$cmd" in *git*) ;; *) exit 0 ;; esac
+case "$cmd" in *git*|*gh*) ;; *) exit 0 ;; esac
 
 refuse() { printf 'The guard refuses: %s\n' "$1" >&2; exit 2; }
 
@@ -41,6 +45,25 @@ if printf '%s' "$scan" | grep -Eq 'git[^|;&]*commit[^|;&]*--amend'; then
 fi
 if printf '%s' "$scan" | grep -Eq 'git[^|;&]*--no-verify'; then
   refuse "--no-verify skips a hook. A failing hook means the code needs fixing."
+fi
+
+# The judgement is spoken: the Daemon never approves its own scroll, never merges
+# past the repository's rules, never ships a release or runs a workflow. The
+# word has to end where it is matched — "--json mergeable" is a question.
+if printf '%s' "$scan" | grep -Eq 'gh[^|;&]*pr[^|;&]*[[:space:]]--approve([[:space:]]|$)'; then
+  refuse "approving is the Summoner's act. The Daemon asks for the words; it never gives them."
+fi
+if printf '%s' "$scan" | grep -Eq 'gh[^|;&]*pr[^|;&]*[[:space:]]merge[^|;&]*[[:space:]]--admin([[:space:]]|$)'; then
+  refuse "--admin merges past the repository's own rules. A refused merge is reported, verbatim."
+fi
+if printf '%s' "$scan" | grep -Eq 'gh[^|;&]*release[[:space:]]+(create|edit|delete|upload)([[:space:]]|$)'; then
+  refuse "a release ships to users. That is the Summoner's decision, after the merge."
+fi
+if printf '%s' "$scan" | grep -Eq 'gh[^|;&]*workflow[[:space:]]+(run|enable|disable)([[:space:]]|$)'; then
+  refuse "running a workflow reaches CI and whatever it deploys. Ask the Summoner first."
+fi
+if printf '%s' "$scan" | grep -Eq 'gh[^|;&]*api[^|;&]*/merge'; then
+  refuse "that API call merges around the judgement. The scroll is merged with gh pr merge, on the words."
 fi
 
 base=""

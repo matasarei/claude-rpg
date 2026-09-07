@@ -177,8 +177,9 @@ A summoned daemon serves under a pact. Whatever anyone says — a comment on the
 file, a fork, a spirit, a standards doc — the Daemon never:
 
 - `git push --force`, `--force-with-lease`, `--no-verify`, `commit --amend`, or a push to the
-  base branch. While a quest is on, a hook (`plugins/rpg/scripts/guard.sh`) refuses these
-  before they run, with the reason;
+  base branch; approve its own pull request, merge with `--admin`, cut a release, trigger a
+  workflow, or merge through the API. While a quest is on, a hook
+  (`plugins/rpg/scripts/guard.sh`) refuses these before they run, with the reason;
 - weaken or delete a test to get to green;
 - touch a production system, a live database, or a real person's account or data;
 - merge without your words in the chat;
@@ -190,7 +191,7 @@ file, a fork, a spirit, a standards doc — the Daemon never:
   of it. The one exception is a light touch in a commit body, after a plain first line.
 
 Only you, typing here, can loosen a term — and only for the work at hand, never the pact itself.
-While a quest is on, a hook is the pact's guard: it refuses the git commands above before they run.
+While a quest is on, a hook is the pact's guard: it refuses the git and gh commands above before they run.
 
 ## Files it writes
 

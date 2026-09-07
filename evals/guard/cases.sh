@@ -79,6 +79,27 @@ cases() {
 2|git commit -m \"it's\" && git push --force && echo \"that's\"
 # refused — the flags outside the quotes are still seen
 2|git commit -m \"msg\" && git push --force
+# refused — the gh commands that are no phase of any quest
+2|gh pr review 12 --approve
+2|gh pr review --approve --body \"lgtm\" 12
+2|gh pr merge 12 --squash --admin
+2|gh pr merge --admin --squash 12
+2|gh release create v1.2.0
+2|gh release upload v1.2.0 dist.zip
+2|gh workflow run deploy.yml
+2|gh workflow enable deploy.yml
+2|gh api repos/o/r/pulls/12/merge -X PUT
+# allowed — the gh the phases use: the scroll, the reads, and the merge on the words
+0|gh pr create --base main --head quest/x
+0|gh pr merge 12 --squash --delete-branch
+0|gh pr ready 12
+0|gh pr view 12 --json mergeable,mergeStateStatus
+0|gh pr list --search \"merge conflict\"
+0|gh pr comment 12 --body \"this needs a merge from main\"
+0|gh pr review 12 --comment --body \"one question\"
+0|gh repo view --json isPrivate
+0|gh api repos/o/r/pulls/12/comments
+0|gh run watch 1 --exit-status
 # allowed — nothing to do with git, or nothing to read
 0|ls -la
 0|rm -rf build

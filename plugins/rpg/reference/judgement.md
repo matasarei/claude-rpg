@@ -127,7 +127,7 @@ git pull --ff-only origin <base>
 ```
 
 The merge is refused — checks pending, a required review, conflicts → say what GitHub said,
-verbatim, and stop. Never `--admin`, never a merge the repository's rules refuse.
+verbatim, and stop. Never `--admin` (the guard refuses it), never a merge the repository's rules refuse.
 
 Quest file: `status: done`, `merged: <sha>`, Log line `done — merged <sha> by the Summoner's word`.
 
